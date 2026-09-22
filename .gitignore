@@ -1,9 +1,5 @@
-# Vendor JS（通过 CDN 引入）
-echarts.min.js
-lucide.min.js
-tailwindcss.js
-xlsx.min.js
-papaparse.min.js
+# Vendor JS（demo index.html 通过 CDN 引入 — 本地副本为兼容保留）
+# echarts.min.js / lucide.min.js / tailwindcss.js / xlsx.min.js / papaparse.min.js
 mermaid.min.js
 # Vendor JS 容器（嵌套在文档目录里）
 **/_shared/js/
