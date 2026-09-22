@@ -1,0 +1,337 @@
+2026-08-11 16:45:45 [INFO] app - [App] 启动 backend (config=testing, debug=False)
+2026-08-11 16:45:46 [INFO] models.database - [DB] 已初始化 metadata 数据库：sqlite:///E:/数分精灵demo minmax/最新版-数分ai/backend/data/metadata.db
+2026-08-11 16:45:47 [INFO] app - [App] 注册 7 个业务蓝图完成
+2026-08-11 16:45:47 [INFO] app - [App] 初始化完成
+2026-08-11 16:46:15 [INFO] app - [App] 启动 backend (config=testing, debug=False)
+2026-08-11 16:46:15 [INFO] models.database - [DB] 已初始化 metadata 数据库：sqlite:///E:/数分精灵demo minmax/最新版-数分ai/backend/data/metadata.db
+2026-08-11 16:46:16 [INFO] app - [App] 注册 7 个业务蓝图完成
+2026-08-11 16:46:16 [INFO] app - [App] 初始化完成
+2026-08-11 16:46:17 [ERROR] api.errors - [API] 未捕获异常: app.json.response() takes either args or kwargs, not both
+Traceback (most recent call last):
+  File "C:\Users\liuxi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\liuxi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "E:\数分精灵demo minmax\最新版-数分ai\backend\app.py", line 92, in index
+    return jsonify({
+        "service": "shufen-backend",
+    ...<14 lines>...
+        },
+    }, ensure_ascii=False)
+  File "C:\Users\liuxi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\flask\json\__init__.py", line 170, in jsonify
+    return current_app.json.response(*args, **kwargs)  # type: ignore[return-value]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\liuxi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\flask\json\provider.py", line 205, in response
+    obj = self._prepare_response_obj(args, kwargs)
+  File "C:\Users\liuxi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\flask\json\provider.py", line 79, in _prepare_response_obj
+    raise TypeError("app.json.response() takes either args or kwargs, not both")
+TypeError: app.json.response() takes either args or kwargs, not both
+
+2026-08-11 16:46:51 [INFO] app - [App] 启动 backend (config=testing, debug=False)
+2026-08-11 16:46:51 [INFO] models.database - [DB] 已初始化 metadata 数据库：sqlite:///E:/数分精灵demo minmax/最新版-数分ai/backend/data/metadata.db
+2026-08-11 16:46:52 [INFO] app - [App] 注册 7 个业务蓝图完成
+2026-08-11 16:46:52 [INFO] app - [App] 初始化完成
+2026-08-11 16:47:15 [INFO] app - [App] 启动 backend (config=testing, debug=False)
+2026-08-11 16:47:16 [INFO] models.database - [DB] 已初始化 metadata 数据库：sqlite:///E:/数分精灵demo minmax/最新版-数分ai/backend/data/metadata.db
+2026-08-11 16:47:17 [INFO] app - [App] 注册 7 个业务蓝图完成
+2026-08-11 16:47:17 [INFO] app - [App] 初始化完成
+2026-08-11 16:47:17 [ERROR] api.query - [Query] 处理失败
+Traceback (most recent call last):
+  File "E:\数分精灵demo minmax\最新版-数分ai\backend\api\query.py", line 33, in query
+    result = process_sync(question, dataset_id)
+  File "E:\数分精灵demo minmax\最新版-数分ai\backend\core\query_processor.py", line 380, in process_sync
+    return asyncio.run(processor.process(question, dataset_id))
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\liuxi\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py", line 204, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "C:\Users\liuxi\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py", line 127, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\liuxi\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "E:\数分精灵demo minmax\最新版-数分ai\backend\core\query_processor.py", line 99, in process
+    dataset = data_manager.get_dataset(dataset_id)
+  File "E:\数分精灵demo minmax\最新版-数分ai\backend\core\data_manager.py", line 272, in get_dataset
+    raise DatasetNotFoundError(f"数据集不存在: {dataset_id}")
+core.data_manager.DatasetNotFoundError: 数据集不存在: ds-nonexistent
+2026-08-11 16:48:50 [INFO] app - [App] 启动 backend (config=testing, debug=False)
+2026-08-11 16:48:51 [INFO] models.database - [DB] 已初始化 metadata 数据库：sqlite:///E:/数分精灵demo minmax/最新版-数分ai/backend/data/metadata.db
+2026-08-11 16:48:51 [INFO] app - [App] 注册 7 个业务蓝图完成
+2026-08-11 16:48:51 [INFO] app - [App] 初始化完成
+2026-08-11 16:49:11 [INFO] app - [App] 启动 backend (config=testing, debug=False)
+2026-08-11 16:49:11 [INFO] models.database - [DB] 已初始化 metadata 数据库：sqlite:///E:/数分精灵demo minmax/最新版-数分ai/backend/data/metadata.db
+2026-08-11 16:49:12 [INFO] app - [App] 注册 7 个业务蓝图完成
+2026-08-11 16:49:12 [INFO] app - [App] 初始化完成
+2026-08-11 16:49:12 [ERROR] api.upload - [Upload] 未捕获异常
+Traceback (most recent call last):
+  File "E:\数分精灵demo minmax\最新版-数分ai\backend\api\upload.py", line 51, in upload_file
+    dataset = data_manager.upload_file(file_stream, file.filename)
+  File "E:\数分精灵demo minmax\最新版-数分ai\backend\core\data_manager.py", line 149, in upload_file
+    size_mb = _file_size_mb(file_bytes)
+  File "E:\数分精灵demo minmax\最新版-数分ai\backend\core\data_manager.py", line 123, in _file_size_mb
+    return len(file_bytes) / (1024 * 1024)
+           ~~~^^^^^^^^^^^^
+TypeError: object of type 'SpooledTemporaryFile' has no len()
+2026-08-11 16:50:15 [INFO] app - [App] 启动 backend (config=testing, debug=False)
+2026-08-11 16:50:15 [INFO] models.database - [DB] 已初始化 metadata 数据库：sqlite:///E:/数分精灵demo minmax/最新版-数分ai/backend/data/metadata.db
+2026-08-11 16:50:16 [INFO] app - [App] 注册 7 个业务蓝图完成
+2026-08-11 16:50:16 [INFO] app - [App] 初始化完成
+2026-08-11 16:50:16 [INFO] core.data_manager - [DataManager] 开始上传: 员工.csv → ds-1786438216-dcc86dfa
+2026-08-11 16:50:16 [INFO] core.data_manager - [DataManager] 上传成功: ds-1786438216-dcc86dfa (5 行 × 4 列, 0.2 KB)
+2026-08-11 16:50:16 [INFO] cache.embedding_model - [EmbeddingModel] 加载模型: paraphrase-multilingual-MiniLM-L12-v2 (device=cpu)
+2026-08-11 16:50:16 [ERROR] cache.embedding_model - [EmbeddingModel] 加载失败: No module named 'sentence_transformers'
+2026-08-11 16:50:16 [INFO] core.query_processor - [QueryProcessor] LLM 失败，降级到规则引擎: 各部门平均薪资
+2026-08-11 16:50:16 [ERROR] api.query - [Query] 处理失败
+Traceback (most recent call last):
+  File "E:\数分精灵demo minmax\最新版-数分ai\backend\core\query_processor.py", line 146, in process
+    sql = self._build_sql(analysis, dataset)
+  File "E:\数分精灵demo minmax\最新版-数分ai\backend\core\query_processor.py", line 292, in _build_sql
+    return generate_sql(analysis, dataset)
+  File "E:\数分精灵demo minmax\最新版-数分ai\backend\core\sql_generator.py", line 262, in generate
+    raise SQLGenerationError("非 count 聚合查询必须提供 metric")
+core.sql_generator.SQLGenerationError: 非 count 聚合查询必须提供 metric
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\数分精灵demo minmax\最新版-数分ai\backend\api\query.py", line 34, in query
+    result = process_sync(question, dataset_id)
+  File "E:\数分精灵demo minmax\最新版-数分ai\backend\core\query_processor.py", line 380, in process_sync
+    return asyncio.run(processor.process(question, dataset_id))
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\liuxi\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py", line 204, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "C:\Users\liuxi\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py", line 127, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\liuxi\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "E:\数分精灵demo minmax\最新版-数分ai\backend\core\query_processor.py", line 148, in process
+    raise QueryProcessorError(f"SQL 生成失败: {e}")
+core.query_processor.QueryProcessorError: SQL 生成失败: 非 count 聚合查询必须提供 metric
+2026-08-11 16:50:16 [INFO] core.query_processor - [QueryProcessor] LLM 失败，降级到规则引擎: 各部门平均薪资
+2026-08-11 16:50:16 [ERROR] api.query - [Query] 处理失败
+Traceback (most recent call last):
+  File "E:\数分精灵demo minmax\最新版-数分ai\backend\core\query_processor.py", line 146, in process
+    sql = self._build_sql(analysis, dataset)
+  File "E:\数分精灵demo minmax\最新版-数分ai\backend\core\query_processor.py", line 292, in _build_sql
+    return generate_sql(analysis, dataset)
+  File "E:\数分精灵demo minmax\最新版-数分ai\backend\core\sql_generator.py", line 262, in generate
+    raise SQLGenerationError("非 count 聚合查询必须提供 metric")
+core.sql_generator.SQLGenerationError: 非 count 聚合查询必须提供 metric
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\数分精灵demo minmax\最新版-数分ai\backend\api\query.py", line 34, in query
+    result = process_sync(question, dataset_id)
+  File "E:\数分精灵demo minmax\最新版-数分ai\backend\core\query_processor.py", line 380, in process_sync
+    return asyncio.run(processor.process(question, dataset_id))
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\liuxi\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py", line 204, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "C:\Users\liuxi\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py", line 127, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\liuxi\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "E:\数分精灵demo minmax\最新版-数分ai\backend\core\query_processor.py", line 148, in process
+    raise QueryProcessorError(f"SQL 生成失败: {e}")
+core.query_processor.QueryProcessorError: SQL 生成失败: 非 count 聚合查询必须提供 metric
+2026-08-11 16:52:19 [INFO] app - [App] 启动 backend (config=testing, debug=False)
+2026-08-11 16:52:20 [INFO] models.database - [DB] 已初始化 metadata 数据库：sqlite:///E:/数分精灵demo minmax/最新版-数分ai/backend/data/metadata.db
+2026-08-11 16:52:20 [INFO] app - [App] 注册 7 个业务蓝图完成
+2026-08-11 16:52:20 [INFO] app - [App] 初始化完成
+2026-08-11 16:52:21 [INFO] core.data_manager - [DataManager] 开始上传: 员工.csv → ds-1786438341-5f49ec81
+2026-08-11 16:52:21 [ERROR] api.upload - [Upload] 未捕获异常
+Traceback (most recent call last):
+  File "E:\数分精灵demo minmax\最新版-数分ai\backend\api\upload.py", line 54, in upload_file
+    dataset = data_manager.upload_file(file_bytes, file.filename)
+  File "E:\数分精灵demo minmax\最新版-数分ai\backend\core\data_manager.py", line 171, in upload_file
+    saved_path.write_bytes(file_bytes)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\liuxi\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib\__init__.py", line 796, in write_bytes
+    with self.open(mode='wb') as f:
+         ~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\liuxi\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib\__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'E:\\数分精灵demo minmax\\最新版-数分ai\\backend\\data\\uploads\\ds-1786438341-5f49ec81.csv'
+2026-08-11 16:54:54 [INFO] app - [App] 启动 backend (config=testing, debug=False)
+2026-08-11 16:54:55 [INFO] models.database - [DB] 已初始化 metadata 数据库：sqlite:///E:/数分精灵demo minmax/最新版-数分ai/backend/data/metadata.db
+2026-08-11 16:54:55 [INFO] app - [App] 注册 7 个业务蓝图完成
+2026-08-11 16:54:55 [INFO] app - [App] 初始化完成
+2026-08-11 16:54:56 [INFO] core.data_manager - [DataManager] 开始上传: 员工.csv → ds-1786438496-b5009c7b
+2026-08-11 16:54:56 [INFO] core.data_manager - [DataManager] 上传成功: ds-1786438496-b5009c7b (5 行 × 4 列, 0.2 KB)
+2026-08-11 16:54:56 [INFO] cache.embedding_model - [EmbeddingModel] 加载模型: paraphrase-multilingual-MiniLM-L12-v2 (device=cpu)
+2026-08-11 16:54:56 [ERROR] cache.embedding_model - [EmbeddingModel] 加载失败: No module named 'sentence_transformers'
+2026-08-11 16:54:56 [INFO] core.query_processor - [QueryProcessor] LLM 失败，降级到规则引擎: 各部门平均薪资
+2026-08-11 16:54:56 [WARNING] cache.semantic_cache - [SemanticCache] store 跳过：embedding 失败
+2026-08-11 16:54:56 [INFO] core.query_processor - [QueryProcessor] LLM 失败，降级到规则引擎: 各部门平均薪资
+2026-08-11 16:54:56 [WARNING] cache.semantic_cache - [SemanticCache] store 跳过：embedding 失败
+2026-08-11 16:54:56 [INFO] core.query_processor - [QueryProcessor] LLM 失败，降级到规则引擎: 总薪资
+2026-08-11 16:54:56 [WARNING] core.chart_config_generator - [ChartConfig] 缺少 x_field/y_field，降级到 table
+2026-08-11 16:54:56 [WARNING] cache.semantic_cache - [SemanticCache] store 跳过：embedding 失败
+2026-08-11 16:54:56 [INFO] core.data_manager - [DataManager] 删除数据集: ds-1786438496-b5009c7b (upload=True, sqlite=True, cache=0, history=3)
+2026-08-11 17:06:10 [INFO] app - [App] 启动 backend (config=testing, debug=False)
+2026-08-11 17:06:11 [INFO] models.database - [DB] 已初始化 metadata 数据库：sqlite:///E:/数分精灵demo minmax/最新版-数分ai/backend/data/metadata.db
+2026-08-11 17:06:12 [INFO] app - [App] 注册 7 个业务蓝图完成
+2026-08-11 17:06:12 [INFO] app - [App] 初始化完成
+2026-08-11 17:06:12 [INFO] core.data_manager - [DataManager] 开始上传: 员工.csv → ds-1786439172-91463a55
+2026-08-11 17:06:12 [INFO] core.data_manager - [DataManager] 上传成功: ds-1786439172-91463a55 (5 行 × 4 列, 0.2 KB)
+2026-08-11 17:06:12 [INFO] cache.embedding_model - [EmbeddingModel] 加载模型: paraphrase-multilingual-MiniLM-L12-v2 (device=cpu)
+2026-08-11 17:06:12 [ERROR] cache.embedding_model - [EmbeddingModel] 加载失败: No module named 'sentence_transformers'
+2026-08-11 17:06:12 [INFO] core.query_processor - [QueryProcessor] LLM 失败，降级到规则引擎: 各部门平均薪资
+2026-08-11 17:06:12 [WARNING] cache.semantic_cache - [SemanticCache] store 跳过：embedding 失败
+2026-08-11 17:06:12 [INFO] core.data_manager - [DataManager] 删除数据集: ds-1786439172-91463a55 (upload=True, sqlite=True, cache=0, history=1)
+2026-08-11 17:38:20 [INFO] app - [App] 启动 backend (config=testing, debug=False)
+2026-08-11 17:38:21 [INFO] models.database - [DB] 已初始化 metadata 数据库：sqlite:///E:/数分精灵demo minmax/最新版-数分ai/backend/data/metadata.db
+2026-08-11 17:38:23 [INFO] app - [App] 注册 7 个业务蓝图完成
+2026-08-11 17:38:23 [INFO] app - [App] 初始化完成
+2026-08-11 17:38:23 [INFO] core.data_manager - [DataManager] 开始上传: 员工.csv → ds-1786441103-4e48e269
+2026-08-11 17:38:23 [INFO] core.data_manager - [DataManager] 上传成功: ds-1786441103-4e48e269 (5 行 × 4 列, 0.2 KB)
+2026-08-11 17:38:23 [INFO] cache.embedding_model - [EmbeddingModel] 加载模型: paraphrase-multilingual-MiniLM-L12-v2 (device=cpu)
+2026-08-11 17:38:23 [ERROR] cache.embedding_model - [EmbeddingModel] 加载失败: No module named 'sentence_transformers'
+2026-08-11 17:38:23 [INFO] core.query_processor - [QueryProcessor] LLM 失败，降级到规则引擎: 各部门平均薪资
+2026-08-11 17:38:23 [WARNING] cache.semantic_cache - [SemanticCache] store 跳过：embedding 失败
+2026-08-11 17:38:23 [INFO] core.query_processor - [QueryProcessor] LLM 失败，降级到规则引擎: 各部门平均薪资
+2026-08-11 17:38:23 [WARNING] cache.semantic_cache - [SemanticCache] store 跳过：embedding 失败
+2026-08-11 17:38:23 [INFO] core.query_processor - [QueryProcessor] LLM 失败，降级到规则引擎: 总员工数
+2026-08-11 17:38:23 [WARNING] core.chart_config_generator - [ChartConfig] 缺少 x_field/y_field，降级到 table
+2026-08-11 17:38:23 [WARNING] cache.semantic_cache - [SemanticCache] store 跳过：embedding 失败
+2026-08-11 17:38:23 [ERROR] api.schema - [Schema] 获取失败
+Traceback (most recent call last):
+  File "E:\数分精灵demo minmax\最新版-数分ai\backend\api\schema.py", line 27, in get_schema
+    schema = data_manager.get_schema(dataset_id, sample_size=sample_size)
+TypeError: DataManager.get_schema() got an unexpected keyword argument 'sample_size'
+2026-08-11 17:39:30 [INFO] app - [App] 启动 backend (config=testing, debug=False)
+2026-08-11 17:39:31 [INFO] models.database - [DB] 已初始化 metadata 数据库：sqlite:///E:/数分精灵demo minmax/最新版-数分ai/backend/data/metadata.db
+2026-08-11 17:39:32 [INFO] app - [App] 注册 7 个业务蓝图完成
+2026-08-11 17:39:32 [INFO] app - [App] 初始化完成
+2026-08-11 17:39:32 [INFO] core.data_manager - [DataManager] 开始上传: 员工.csv → ds-1786441172-d626351d
+2026-08-11 17:39:32 [INFO] core.data_manager - [DataManager] 上传成功: ds-1786441172-d626351d (5 行 × 4 列, 0.2 KB)
+2026-08-11 17:39:32 [INFO] cache.embedding_model - [EmbeddingModel] 加载模型: paraphrase-multilingual-MiniLM-L12-v2 (device=cpu)
+2026-08-11 17:39:32 [ERROR] cache.embedding_model - [EmbeddingModel] 加载失败: No module named 'sentence_transformers'
+2026-08-11 17:39:32 [INFO] core.query_processor - [QueryProcessor] LLM 失败，降级到规则引擎: 各部门平均薪资
+2026-08-11 17:39:32 [WARNING] cache.semantic_cache - [SemanticCache] store 跳过：embedding 失败
+2026-08-11 17:39:32 [INFO] core.query_processor - [QueryProcessor] LLM 失败，降级到规则引擎: 员工总数
+2026-08-11 17:39:32 [WARNING] core.chart_config_generator - [ChartConfig] 缺少 x_field/y_field，降级到 table
+2026-08-11 17:39:32 [WARNING] cache.semantic_cache - [SemanticCache] store 跳过：embedding 失败
+2026-08-11 17:39:32 [INFO] core.query_processor - [QueryProcessor] LLM 失败，降级到规则引擎: 销售趋势
+2026-08-11 17:39:32 [WARNING] cache.semantic_cache - [SemanticCache] store 跳过：embedding 失败
+2026-08-11 17:39:32 [ERROR] api.insight - [Insight] 生成失败
+Traceback (most recent call last):
+  File "E:\数分精灵demo minmax\最新版-数分ai\backend\api\insight.py", line 31, in generate_insights
+    overview = generate_dataset_overview(
+        dataset_name=dataset.original_name,
+        profile_stats=profile,
+    )
+  File "E:\数分精灵demo minmax\最新版-数分ai\backend\core\insight_generator.py", line 282, in generate_dataset_overview
+    total_rows = profile_stats.get("total_rows", 0)
+                 ^^^^^^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+2026-08-11 17:40:35 [INFO] app - [App] 启动 backend (config=testing, debug=False)
+2026-08-11 17:40:35 [INFO] models.database - [DB] 已初始化 metadata 数据库：sqlite:///E:/数分精灵demo minmax/最新版-数分ai/backend/data/metadata.db
+2026-08-11 17:40:36 [INFO] app - [App] 注册 7 个业务蓝图完成
+2026-08-11 17:40:36 [INFO] app - [App] 初始化完成
+2026-08-11 17:40:36 [INFO] core.data_manager - [DataManager] 开始上传: 员工.csv → ds-1786441236-3fc27642
+2026-08-11 17:40:36 [INFO] core.data_manager - [DataManager] 上传成功: ds-1786441236-3fc27642 (5 行 × 4 列, 0.2 KB)
+2026-08-11 17:40:36 [INFO] cache.embedding_model - [EmbeddingModel] 加载模型: paraphrase-multilingual-MiniLM-L12-v2 (device=cpu)
+2026-08-11 17:40:36 [ERROR] cache.embedding_model - [EmbeddingModel] 加载失败: No module named 'sentence_transformers'
+2026-08-11 17:40:36 [INFO] core.query_processor - [QueryProcessor] LLM 失败，降级到规则引擎: 各部门平均薪资
+2026-08-11 17:40:36 [WARNING] cache.semantic_cache - [SemanticCache] store 跳过：embedding 失败
+2026-08-11 17:40:36 [INFO] core.query_processor - [QueryProcessor] LLM 失败，降级到规则引擎: 员工总数
+2026-08-11 17:40:36 [WARNING] cache.semantic_cache - [SemanticCache] store 跳过：embedding 失败
+2026-08-11 17:40:36 [INFO] core.query_processor - [QueryProcessor] LLM 失败，降级到规则引擎: 销售趋势
+2026-08-11 17:40:36 [WARNING] cache.semantic_cache - [SemanticCache] store 跳过：embedding 失败
+2026-08-11 17:40:36 [INFO] core.data_manager - [DataManager] 删除数据集: ds-1786441236-3fc27642 (upload=True, sqlite=True, cache=0, history=3)
+2026-08-11 22:20:34 [INFO] app - [App] 启动 backend (config=testing, debug=False)
+2026-08-11 22:20:34 [INFO] models.database - [DB] 已初始化 metadata 数据库：sqlite:///E:/数分精灵demo minmax/最新版-数分ai/backend/data/metadata.db
+2026-08-11 22:20:35 [INFO] app - [App] 注册 8 个业务蓝图完成
+2026-08-11 22:20:35 [INFO] app - [App] 初始化完成
+2026-08-11 22:21:14 [INFO] app - [App] 启动 backend (config=testing, debug=False)
+2026-08-11 22:21:15 [INFO] models.database - [DB] 已初始化 metadata 数据库：sqlite:///E:/数分精灵demo minmax/最新版-数分ai/backend/data/metadata.db
+2026-08-11 22:21:15 [INFO] app - [App] 注册 8 个业务蓝图完成
+2026-08-11 22:21:15 [INFO] app - [App] 初始化完成
+2026-08-11 22:21:15 [ERROR] llm.llm_client - [LLMClient] 错误类型=auth_error 详情=模拟 API Key 错误 累计失败=1/50
+2026-08-11 22:21:15 [ERROR] llm.llm_client - [LLMClient] 错误类型=timeout 详情=模拟超时 累计失败=2/50
+2026-08-11 22:21:15 [ERROR] llm.llm_client - [LLMClient] 错误类型=parse_error 详情=模拟 JSON 解析失败 累计失败=3/50
+2026-08-12 11:49:17 [INFO] app - [App] 启动 backend (config=default, debug=False)
+2026-08-12 11:49:17 [INFO] models.database - [DB] 已初始化 metadata 数据库：sqlite:///E:/数分精灵demo minmax/最新版-数分ai/backend/data/metadata.db
+2026-08-12 11:49:17 [INFO] app - [App] 注册 8 个业务蓝图完成
+2026-08-12 11:49:17 [INFO] app - [App] 初始化完成
+2026-08-12 11:49:17 [INFO] core.rules_store - [RulesStore] 新增规则: id=1, scope=ds-test-int, category=ranking, text=TOP 5 排除自己
+2026-08-12 11:49:17 [INFO] core.rules_store - [RulesStore] 新增规则: id=2, scope=ds-test-int, category=ranking, text=TOP 5 排除自己不要
+2026-08-12 11:51:10 [INFO] app - [App] 启动 backend (config=default, debug=False)
+2026-08-12 11:51:10 [INFO] models.database - [DB] 已初始化 metadata 数据库：sqlite:///E:/数分精灵demo minmax/最新版-数分ai/backend/data/metadata.db
+2026-08-12 11:51:11 [INFO] app - [App] 注册 8 个业务蓝图完成
+2026-08-12 11:51:11 [INFO] app - [App] 初始化完成
+2026-08-12 11:51:11 [INFO] core.rules_store - [RulesStore] 新增规则: id=1, scope=ds-test-int, category=alias, text=毛利率 = 净利率 + 成本率
+2026-08-12 11:51:11 [INFO] core.rules_store - [RulesStore] 新增规则: id=2, scope=ds-test-int, category=alias, text=毛利率等于净利率加成本率
+2026-08-12 11:52:08 [INFO] app - [App] 启动 backend (config=default, debug=False)
+2026-08-12 11:52:08 [INFO] models.database - [DB] 已初始化 metadata 数据库：sqlite:///E:/数分精灵demo minmax/最新版-数分ai/backend/data/metadata.db
+2026-08-12 11:52:09 [INFO] app - [App] 注册 8 个业务蓝图完成
+2026-08-12 11:52:09 [INFO] app - [App] 初始化完成
+2026-08-12 11:52:09 [INFO] core.rules_store - [RulesStore] 新增规则: id=1, scope=ds-test-int, category=alias, text=毛利率 = 净利率 + 成本率
+2026-08-12 11:52:09 [INFO] core.rules_store - [RulesStore] 同义规则合并: id=1, sim=0.67
+2026-08-12 11:52:09 [INFO] core.rules_store - [RulesStore] 新增规则: id=2, scope=ds-test-int, category=other, text=本周销售额
+2026-08-12 11:52:25 [INFO] app - [App] 启动 backend (config=default, debug=False)
+2026-08-12 11:52:25 [INFO] models.database - [DB] 已初始化 metadata 数据库：sqlite:///E:/数分精灵demo minmax/最新版-数分ai/backend/data/metadata.db
+2026-08-12 11:52:26 [INFO] app - [App] 注册 8 个业务蓝图完成
+2026-08-12 11:52:26 [INFO] app - [App] 初始化完成
+2026-08-12 11:52:26 [INFO] core.rules_store - [RulesStore] 新增规则: id=1, scope=ds-final, category=ranking, text=TOP 5 排除自己
+2026-08-12 11:52:39 [INFO] app - [App] 启动 backend (config=default, debug=False)
+2026-08-12 11:52:39 [INFO] models.database - [DB] 已初始化 metadata 数据库：sqlite:///E:/数分精灵demo minmax/最新版-数分ai/backend/data/metadata.db
+2026-08-12 11:52:40 [INFO] app - [App] 注册 8 个业务蓝图完成
+2026-08-12 11:52:40 [INFO] app - [App] 初始化完成
+2026-08-12 11:52:40 [INFO] core.rules_store - [RulesStore] 新增规则: id=1, scope=ds-final, category=ranking, text=TOP 5 排除自己
+2026-08-12 11:53:53 [INFO] app - [App] 启动 backend (config=default, debug=False)
+2026-08-12 11:53:53 [INFO] models.database - [DB] 已初始化 metadata 数据库：sqlite:///E:/数分精灵demo minmax/最新版-数分ai/backend/data/metadata.db
+2026-08-12 11:53:53 [INFO] app - [App] 注册 8 个业务蓝图完成
+2026-08-12 11:53:53 [INFO] app - [App] 初始化完成
+2026-08-12 14:21:03 [INFO] __main__ - [App] 启动 backend (config=development, debug=False)
+2026-08-12 14:21:04 [INFO] models.database - [DB] 已初始化 metadata 数据库：sqlite:///E:/数分精灵demo minmax/最新版-数分ai/backend/data/metadata.db
+2026-08-12 14:21:05 [INFO] __main__ - [App] 注册 8 个业务蓝图完成
+2026-08-12 14:21:05 [INFO] __main__ - [App] 初始化完成
+2026-08-12 14:21:05 [INFO] werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.11.233:5000
+2026-08-12 14:21:05 [INFO] werkzeug - [33mPress CTRL+C to quit[0m
+2026-08-12 14:30:02 [INFO] __main__ - [App] 启动 backend (config=development, debug=False)
+2026-08-12 14:30:03 [INFO] models.database - [DB] 已初始化 metadata 数据库：sqlite:///E:/数分精灵demo minmax/最新版-数分ai/backend/data/metadata.db
+2026-08-12 14:30:04 [INFO] __main__ - [App] 注册 8 个业务蓝图完成
+2026-08-12 14:30:04 [INFO] __main__ - [App] 初始化完成
+2026-08-12 14:30:04 [INFO] werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.11.233:5000
+2026-08-12 14:30:04 [INFO] werkzeug - [33mPress CTRL+C to quit[0m
+2026-08-12 14:32:34 [INFO] __main__ - [App] 启动 backend (config=development, debug=False)
+2026-08-12 14:32:35 [INFO] models.database - [DB] 已初始化 metadata 数据库：sqlite:///E:/数分精灵demo minmax/最新版-数分ai/backend/data/metadata.db
+2026-08-12 14:32:36 [INFO] __main__ - [App] 注册 8 个业务蓝图完成
+2026-08-12 14:32:36 [INFO] __main__ - [App] 初始化完成
+2026-08-12 14:32:36 [INFO] werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.11.233:5000
+2026-08-12 14:32:36 [INFO] werkzeug - [33mPress CTRL+C to quit[0m
+2026-08-12 14:32:43 [INFO] werkzeug - 127.0.0.1 - - [12/Aug/2026 14:32:43] "GET /api/health HTTP/1.1" 200 -
+2026-08-12 14:45:21 [INFO] __main__ - [App] 启动 backend (config=development, debug=False)
+2026-08-12 14:45:21 [INFO] models.database - [DB] 已初始化 metadata 数据库：sqlite:///E:/数分精灵demo minmax/最新版-数分ai/backend/data/metadata.db
+2026-08-12 14:45:23 [INFO] __main__ - [App] 注册 8 个业务蓝图完成
+2026-08-12 14:45:23 [INFO] __main__ - [App] 初始化完成
+2026-08-12 14:45:23 [INFO] werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.11.233:5000
+2026-08-12 14:45:23 [INFO] werkzeug - [33mPress CTRL+C to quit[0m
+2026-08-12 14:45:30 [INFO] werkzeug - 127.0.0.1 - - [12/Aug/2026 14:45:30] "GET /api/health HTTP/1.1" 200 -
+2026-08-12 14:47:32 [INFO] werkzeug - 127.0.0.1 - - [12/Aug/2026 14:47:32] "GET /api/dataset HTTP/1.1" 200 -

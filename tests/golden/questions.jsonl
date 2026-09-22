@@ -1,0 +1,227 @@
+{"id": "T01", "category": "like_filter", "dataset": "students.csv", "question": "姓刘的同学", "expected_sql_pattern": "姓名.*LIKE.*刘", "expected_rows": 2, "key_check": "姓名含'刘'"}
+{"id": "T02", "category": "like_filter", "dataset": "students.csv", "question": "包含\"三\"的同学", "expected_sql_pattern": "姓名.*LIKE.*三", "expected_rows": 2, "key_check": "含'三'=张三+王十四"}
+{"id": "T03", "category": "ranking", "dataset": "students.csv", "question": "学号在前五名的同学", "expected_sql_pattern": "ORDER BY.*学号.*LIMIT.*5", "expected_rows": 5, "key_check": "学号排序前5"}
+{"id": "T04", "category": "ranking", "dataset": "students.csv", "question": "成绩最高的5个", "expected_sql_pattern": "ORDER BY.*成绩.*DESC.*LIMIT.*5", "expected_rows": 5, "key_check": "成绩DESC前5"}
+{"id": "T05", "category": "aggregation_group", "dataset": "students.csv", "question": "各性别人数", "expected_sql_pattern": "GROUP BY.*性别", "expected_rows": 2, "key_check": "按性别分组计数"}
+{"id": "T06", "category": "scalar_count", "dataset": "students.csv", "question": "男生人数", "expected_sql_pattern": "COUNT|男", "expected_rows_ge": 1, "key_check": "男生标量"}
+{"id": "T07", "category": "trend_group", "dataset": "sales.csv", "question": "各城市销售额趋势", "expected_sql_pattern": "SUM.*销售额", "expected_rows_ge": 3, "key_check": "按城市SUM"}
+{"id": "T08", "category": "ranking", "dataset": "sales.csv", "question": "销售额最高的产品", "expected_sql_pattern": "ORDER BY.*DESC.*LIMIT", "expected_rows_ge": 1, "key_check": "产品SUM排序"}
+{"id": "T09", "category": "single_filter", "dataset": "sales.csv", "question": "上海的销售额", "expected_sql_pattern": "城市.*=.*上海", "expected_rows": 4, "key_check": "上海=4行"}
+{"id": "T10", "category": "comparison", "dataset": "sales.csv", "question": "上海和北京的销售额对比", "expected_sql_pattern": "城市.*(上海|北京)", "expected_rows_ge": 2, "key_check": "上海+北京聚合"}
+{"id": "T11", "category": "ranking", "dataset": "employees.csv", "question": "薪资前3的员工", "expected_sql_pattern": "ORDER BY.*薪资.*DESC.*LIMIT.*3", "expected_rows": 3, "key_check": "薪资DESC前3"}
+{"id": "T12", "category": "ranking", "dataset": "employees.csv", "question": "薪资最高的5个员工", "expected_sql_pattern": "ORDER BY.*薪资.*DESC.*LIMIT.*5", "expected_rows": 5, "key_check": "薪资DESC前5"}
+{"id": "T13", "category": "scalar_count", "dataset": "employees.csv", "question": "研发部员工人数", "expected_sql_pattern": "COUNT|部门.*研发|研发.*COUNT", "expected_rows": 1, "key_check": "研发=5人标量"}
+{"id": "T14", "category": "like_filter", "dataset": "employees.csv", "question": "姓刘的员工", "expected_sql_pattern": "姓名.*LIKE.*刘", "expected_rows": 2, "key_check": "姓刘=2人"}
+{"id": "T15", "category": "single_filter", "dataset": "employees.csv", "question": "名字是张三", "expected_sql_pattern": "姓名.*=.*张三", "expected_rows": 1, "key_check": "=非LIKE"}
+{"id": "T16", "category": "like_filter", "dataset": "employees.csv", "question": "姓欧阳的同学", "expected_sql_pattern": "姓名.*LIKE", "expected_rows": 0, "key_check": "空结果"}
+{"id": "T17", "category": "like_filter", "dataset": "sales.csv", "question": "包含上海的记录", "expected_sql_pattern": "城市.*LIKE.*上海", "expected_rows": 3, "key_check": "LIKE%上海%"}
+{"id": "T18", "category": "like_filter", "dataset": "sales.csv", "question": "有上海的", "expected_sql_pattern": "LIKE.*上海", "expected_rows": 3, "key_check": "'有'触发LIKE"}
+{"id": "T19", "category": "threshold_filter", "dataset": "students.csv", "question": "成绩大于85的同学", "expected_sql_pattern": "WHERE.*成绩.*>.*85", "expected_rows": 6, "key_check": "行级WHERE非SUM"}
+{"id": "T20", "category": "range_filter", "dataset": "employees.csv", "question": "薪资在15000到20000之间的员工", "expected_sql_pattern": "薪资.*(BETWEEN|>=.*<=)", "expected_rows": 4, "key_check": "BETWEEN范围"}
+{"id": "T21", "category": "having", "dataset": "sales.csv", "question": "销售额超过2500的产品", "expected_sql_pattern": "销售额.*>|HAVING.*销售额", "expected_rows_ge": 1, "key_check": ">2500过滤"}
+{"id": "T22", "category": "multi_condition", "dataset": "employees.csv", "question": "研发部薪资大于15000", "expected_sql_pattern": "部门.*=.*研发.*薪资.*>", "expected_rows": 5, "key_check": "AND双条件"}
+{"id": "T23", "category": "trend_group", "dataset": "sales.csv", "question": "各月销售额趋势", "expected_sql_pattern": "SUM.*销售额", "expected_rows_ge": 3, "key_check": "按月SUM"}
+{"id": "T24", "category": "time_after", "dataset": "sales.csv", "question": "2024年2月之后的销售", "expected_sql_pattern": "日期.*>=.*2024-02", "expected_rows_ge": 1, "key_check": "'之后'开区间"}
+{"id": "T25", "category": "statistic", "dataset": "students.csv", "question": "成绩的中位数", "expected_sql_pattern": "成绩|MEDIAN|中位数", "expected_rows_ge": 1, "key_check": "中位数返回"}
+{"id": "T26", "category": "ratio", "dataset": "sales.csv", "question": "各城市销售额占比", "expected_sql_pattern": "占比|百分比|SUM.*销售额", "expected_rows": 5, "key_check": "5城市占比"}
+{"id": "T27", "category": "count_distinct", "dataset": "sales.csv", "question": "有多少个城市", "expected_sql_pattern": "DISTINCT|COUNT.*城市", "expected_rows": 5, "key_check": "5城市去重"}
+{"id": "T28", "category": "ranking_date", "dataset": "employees.csv", "question": "入职日期最晚的3个员工", "expected_sql_pattern": "ORDER BY.*入职日期.*DESC.*LIMIT.*3", "expected_rows": 3, "key_check": "日期排序"}
+{"id": "T29", "category": "cumulative", "dataset": "sales.csv", "question": "累计销售额", "expected_sql_pattern": "CUMULATIVE|SUM.*OVER|累计", "expected_rows_ge": 1, "key_check": "窗口函数"}
+{"id": "T30", "category": "scalar_avg", "dataset": "employees.csv", "question": "平均薪资", "expected_sql_pattern": "AVG.*薪资|平均.*薪资", "expected_rows": 1, "key_check": "AVG=14800"}
+{"id": "T31", "category": "like_filter", "dataset": "students.csv", "question": "姓名里带'七'的同学", "expected_sql_pattern": "LIKE.*七|姓名.*LIKE", "expected_rows": 1, "key_check": "'七'=1人(刘七)"}
+{"id": "T32", "category": "like_filter", "dataset": "students.csv", "question": "学号里含2020的", "expected_sql_pattern": "LIKE.*2020|学号.*LIKE", "expected_rows": 12, "key_check": "学号均含2020"}
+{"id": "T33", "category": "like_filter", "dataset": "sales.csv", "question": "城市中有'北'的", "expected_sql_pattern": "城市.*LIKE.*北|北.*LIKE", "expected_rows": 1, "key_check": "北京SUM=1行"}
+{"id": "T34", "category": "single_filter", "dataset": "sales.csv", "question": "杭州的产品", "expected_sql_pattern": "城市.*=.*杭州|杭州", "expected_rows_ge": 1, "key_check": "杭州至少1行"}
+{"id": "T35", "category": "single_filter", "dataset": "employees.csv", "question": "销售部的员工", "expected_sql_pattern": "部门.*=.*销售|销售", "expected_rows_ge": 2, "key_check": "销售部≥2人"}
+{"id": "T36", "category": "aggregation_group", "dataset": "sales.csv", "question": "按日期统计销售额", "expected_sql_pattern": "GROUP BY.*日期|日期.*SUM", "expected_rows_ge": 3, "key_check": "按日期分组"}
+{"id": "T37", "category": "aggregation_group", "dataset": "employees.csv", "question": "各部门平均薪资", "expected_sql_pattern": "AVG.*薪资|GROUP BY.*部门", "expected_rows": 3, "key_check": "3部门平均"}
+{"id": "T38", "category": "aggregation_group", "dataset": "students.csv", "question": "各院系人数", "expected_sql_pattern": "GROUP BY.*院系|院系.*COUNT", "expected_rows": 1, "key_check": "1院系=12人"}
+{"id": "T39", "category": "scalar_count", "dataset": "students.csv", "question": "成绩及格的人数", "expected_sql_pattern": "COUNT|成绩.*>=|及格", "expected_rows": 1, "key_check": "≥60分人数"}
+{"id": "T40", "category": "scalar_count", "dataset": "students.csv", "question": "有多少女生", "expected_sql_pattern": "性别.*女|女.*COUNT", "expected_rows": 1, "key_check": "女生数"}
+{"id": "T41", "category": "threshold_filter", "dataset": "students.csv", "question": "成绩小于80的同学", "expected_sql_pattern": "WHERE.*成绩.*<.*80|成绩.*<.*80", "expected_rows": 2, "key_check": "<80=2人(78,76)"}
+{"id": "T42", "category": "threshold_filter", "dataset": "employees.csv", "question": "薪资超过20000的员工", "expected_sql_pattern": "薪资.*>|HAVING.*薪资", "expected_rows": 1, "key_check": ">20000=1人"}
+{"id": "T43", "category": "threshold_filter", "dataset": "sales.csv", "question": "销售额低于1000的记录", "expected_sql_pattern": "销售额.*<.*1000|销售额.*<.*1000", "expected_rows": 0, "key_check": "<1000=0条(最小1000)"}
+{"id": "T44", "category": "range_filter", "dataset": "students.csv", "question": "成绩在80到90之间的同学", "expected_sql_pattern": "成绩.*(BETWEEN|>=.*<=)", "expected_rows_ge": 3, "key_check": "80-90"}
+{"id": "T45", "category": "range_filter", "dataset": "sales.csv", "question": "2024年1月到3月的销售", "expected_sql_pattern": "日期.*>=|日期.*<=", "expected_rows": 5, "key_check": "Q1 5行"}
+{"id": "T46", "category": "multi_condition", "dataset": "sales.csv", "question": "北京的销售额大于2000的记录", "expected_sql_pattern": "城市.*北京.*销售额.*>|北京.*销售额.*>", "expected_rows_ge": 1, "key_check": "北京>2000"}
+{"id": "T47", "category": "multi_condition", "dataset": "employees.csv", "question": "销售部薪资大于12000", "expected_sql_pattern": "部门.*销售.*薪资.*>|销售.*薪资.*>", "expected_rows_ge": 1, "key_check": "销售>12000"}
+{"id": "T48", "category": "time_after", "dataset": "employees.csv", "question": "2020年之后入职的员工", "expected_sql_pattern": "入职日期.*>=.*2020", "expected_rows_ge": 5, "key_check": "2020+"}
+{"id": "T49", "category": "time_before", "dataset": "sales.csv", "question": "2024年1月之前的数据", "expected_sql_pattern": "日期.*<.*2024-02|日期.*<.*2024", "expected_rows_ge": 1, "key_check": "2024-01"}
+{"id": "T50", "category": "ranking", "dataset": "sales.csv", "question": "销售额最低的产品", "expected_sql_pattern": "ORDER BY.*ASC.*LIMIT|SUM.*产品.*ORDER.*ASC", "expected_rows_ge": 1, "key_check": "ASC"}
+{"id": "T51", "category": "ranking", "dataset": "employees.csv", "question": "薪资最低的3个员工", "expected_sql_pattern": "ORDER BY.*薪资.*ASC.*LIMIT.*3|ORDER BY.*薪资.*LIMIT.*3", "expected_rows": 3, "key_check": "asc"}
+{"id": "T52", "category": "ranking", "dataset": "students.csv", "question": "成绩排名最后3名", "expected_sql_pattern": "ORDER BY.*成绩.*ASC.*LIMIT.*3", "expected_rows": 3, "key_check": "成绩asc前3"}
+{"id": "T53", "category": "statistic", "dataset": "students.csv", "question": "最高成绩", "expected_sql_pattern": "MAX.*成绩|最高", "expected_rows": 1, "key_check": "MAX=95"}
+{"id": "T54", "category": "statistic", "dataset": "employees.csv", "question": "薪资的最大值", "expected_sql_pattern": "MAX.*薪资|最大.*薪资", "expected_rows": 1, "key_check": "MAX=22000"}
+{"id": "T55", "category": "statistic", "dataset": "sales.csv", "question": "销售额最小值", "expected_sql_pattern": "MIN.*销售额|最小.*销售额", "expected_rows": 1, "key_check": "MIN=1000"}
+{"id": "T56", "category": "ratio", "dataset": "students.csv", "question": "男生占比", "expected_sql_pattern": "百分比|占比|性别|男", "expected_rows_ge": 1, "key_check": "男生/总≥1"}
+{"id": "T57", "category": "ratio", "dataset": "employees.csv", "question": "研发部的占比", "expected_sql_pattern": "百分比|占比|部门.*研发|研发.*占", "expected_rows_ge": 1, "key_check": "研发占比≥1"}
+{"id": "T58", "category": "count_distinct", "dataset": "students.csv", "question": "有多少个院系", "expected_sql_pattern": "DISTINCT.*院系|COUNT.*院系", "expected_rows": 1, "key_check": "1院系"}
+{"id": "T59", "category": "count_distinct", "dataset": "employees.csv", "question": "有多少个部门", "expected_sql_pattern": "DISTINCT.*部门|COUNT.*部门|COUNT.*DISTINCT", "expected_rows_ge": 1, "key_check": "3部门≥1"}
+{"id": "T60", "category": "cumulative", "dataset": "employees.csv", "question": "累计薪资", "expected_sql_pattern": "SUM.*OVER|SUM.*累计|累计", "expected_rows_ge": 1, "key_check": "累计薪资"}
+{"id": "T61", "category": "trend_group", "dataset": "sales.csv", "question": "每日销售额", "expected_sql_pattern": "SUM.*销售额|日期.*SUM", "expected_rows_ge": 5, "key_check": "按日SUM"}
+{"id": "T62", "category": "trend_group", "dataset": "sales.csv", "question": "各产品总销售额", "expected_sql_pattern": "GROUP BY.*产品|产品.*SUM", "expected_rows": 3, "key_check": "产品A/B/C"}
+{"id": "T63", "category": "comparison", "dataset": "employees.csv", "question": "销售部和研发部的薪资对比", "expected_sql_pattern": "部门.*(销售|研发)|销售.*研发|研发.*销售", "expected_rows_ge": 2, "key_check": "两部门"}
+{"id": "T64", "category": "comparison", "dataset": "students.csv", "question": "按性别看成绩对比", "expected_sql_pattern": "性别|GROUP BY.*性别|男.*女", "expected_rows_ge": 2, "key_check": "性别对比"}
+{"id": "T65", "category": "single_filter", "dataset": "sales.csv", "question": "深圳的销售", "expected_sql_pattern": "城市.*=.*深圳", "expected_rows_ge": 1, "key_check": "深圳"}
+{"id": "T66", "category": "single_filter", "dataset": "employees.csv", "question": "人事部的员工", "expected_sql_pattern": "部门.*=.*人事|人事", "expected_rows_ge": 2, "key_check": "人事=2"}
+{"id": "T67", "category": "like_filter", "dataset": "sales.csv", "question": "产品名里含'A'的产品", "expected_sql_pattern": "产品.*LIKE.*A|LIKE.*A", "expected_rows": 1, "key_check": "产品A SUM=1行"}
+{"id": "T68", "category": "like_filter", "dataset": "employees.csv", "question": "姓名以'张'开头的员工", "expected_sql_pattern": "LIKE.*张%|姓名.*张", "expected_rows_ge": 1, "key_check": "张三"}
+{"id": "T69", "category": "threshold_filter", "dataset": "sales.csv", "question": "销量超过100的产品", "expected_sql_pattern": "数量.*>|数量.*>|销售.*数量", "expected_rows_ge": 1, "key_check": ">100"}
+{"id": "T70", "category": "threshold_filter", "dataset": "students.csv", "question": "成绩在85及以上的", "expected_sql_pattern": "成绩.*[><=].*85|成绩.*85", "expected_rows_ge": 5, "key_check": "成绩>85≥5"}
+{"id": "T71", "category": "ranking", "dataset": "students.csv", "question": "成绩排名前5", "expected_sql_pattern": "ORDER BY.*成绩.*DESC.*LIMIT.*5", "expected_rows": 5, "key_check": "DESC前5"}
+{"id": "T72", "category": "ranking", "dataset": "sales.csv", "question": "销量最大的3个城市", "expected_sql_pattern": "ORDER BY.*数量.*DESC.*LIMIT.*3|数量.*DESC.*LIMIT.*3", "expected_rows": 3, "key_check": "数量DESC"}
+{"id": "T73", "category": "statistic", "dataset": "sales.csv", "question": "总销售额", "expected_sql_pattern": "SUM.*销售额|总.*销售", "expected_rows_ge": 1, "key_check": "总和≥1"}
+{"id": "T74", "category": "statistic", "dataset": "employees.csv", "question": "薪资总和", "expected_sql_pattern": "SUM.*薪资|总.*薪资", "expected_rows_ge": 1, "key_check": "总薪资≥1"}
+{"id": "T75", "category": "aggregation_group", "dataset": "sales.csv", "question": "各产品销量", "expected_sql_pattern": "GROUP BY.*产品|产品.*SUM", "expected_rows": 3, "key_check": "产品SUM"}
+{"id": "T76", "category": "threshold_filter", "dataset": "sales.csv", "question": "深圳的销售额", "expected_sql_pattern": "深圳|城市.*深圳|深圳.*销售额", "expected_rows": 2, "key_check": "深圳=2行"}
+{"id": "T77", "category": "time_range", "dataset": "sales.csv", "question": "2024年Q1的销售", "expected_sql_pattern": "日期.*>=.*2024-01|日期.*<=", "expected_rows_ge": 3, "key_check": "Q1"}
+{"id": "T78", "category": "comparison", "dataset": "sales.csv", "question": "北京和上海对比", "expected_sql_pattern": "北京.*上海|上海.*北京", "expected_rows_ge": 2, "key_check": "京沪对比"}
+{"id": "T79", "category": "aggregation_group", "dataset": "students.csv", "question": "各班级人数", "expected_sql_pattern": "GROUP BY.*班级|班级.*COUNT", "expected_rows_ge": 1, "key_check": "班级分组"}
+{"id": "T80", "category": "count_distinct", "dataset": "sales.csv", "question": "产品种类数", "expected_sql_pattern": "DISTINCT.*产品|COUNT.*产品", "expected_rows": 3, "key_check": "3产品"}
+{"id": "T81", "category": "threshold_filter", "dataset": "students.csv", "question": "成绩不及格的同学", "expected_sql_pattern": "成绩.*<.*60|成绩.*<.*60", "expected_rows": 0, "key_check": "无不及格"}
+{"id": "T200", "category": "ranking", "dataset": "students.csv", "question": "学号前2个同学", "expected_sql_pattern": "ORDER BY.*学号.*ASC.*LIMIT.*2", "expected_rows": 2, "key_check": "学号最小2个"}
+{"id": "T201", "category": "ranking", "dataset": "students.csv", "question": "学号前两名的同学", "expected_sql_pattern": "ORDER BY.*学号.*ASC.*LIMIT.*2", "expected_rows": 2, "key_check": "学号最小2个"}
+{"id": "T82", "category": "aggregation_group", "dataset": "ecommerce_10k.csv", "question": "各品类销售额", "expected_sql_pattern": "GROUP BY.*品类|SUM.*销售额", "expected_rows": 5, "key_check": "5品类分组"}
+{"id": "T83", "category": "aggregation_group", "dataset": "ecommerce_10k.csv", "question": "各渠道销售额", "expected_sql_pattern": "GROUP BY.*渠道", "expected_rows": 4, "key_check": "4渠道分组"}
+{"id": "T84", "category": "aggregation_group", "dataset": "ecommerce_10k.csv", "question": "各状态订单数", "expected_sql_pattern": "GROUP BY.*状态|COUNT", "expected_rows": 4, "key_check": "4状态"}
+{"id": "T85", "category": "ranking", "dataset": "ecommerce_10k.csv", "question": "销售额最高的10个订单", "expected_sql_pattern": "ORDER BY.*销售额.*DESC.*LIMIT.*10", "expected_rows": 10, "key_check": "TOP10销售额"}
+{"id": "T86", "category": "ranking", "dataset": "ecommerce_10k.csv", "question": "数量最大的5个订单", "expected_sql_pattern": "ORDER BY.*数量.*DESC.*LIMIT.*5", "expected_rows": 5, "key_check": "TOP5数量"}
+{"id": "T87", "category": "ranking", "dataset": "ecommerce_10k.csv", "question": "各品类销售额排名", "expected_sql_pattern": "ORDER BY.*DESC.*LIMIT|GROUP BY.*品类.*ORDER", "expected_rows": 5, "key_check": "品类排名"}
+{"id": "T88", "category": "scalar_count", "dataset": "ecommerce_10k.csv", "question": "订单总数", "expected_sql_pattern": "COUNT|SUM", "expected_rows_ge": 1, "key_check": "总订单"}
+{"id": "T89", "category": "scalar_count", "dataset": "ecommerce_10k.csv", "question": "有多少个客户", "expected_sql_pattern": "DISTINCT.*客户|COUNT.*客户", "expected_rows_ge": 1, "key_check": "500客户"}
+{"id": "T90", "category": "count_distinct", "dataset": "ecommerce_10k.csv", "question": "有多少个品类", "expected_sql_pattern": "DISTINCT.*品类|COUNT.*品类", "expected_rows": 1, "key_check": "5品类"}
+{"id": "T91", "category": "count_distinct", "dataset": "ecommerce_10k.csv", "question": "渠道种类数", "expected_sql_pattern": "DISTINCT.*渠道|COUNT.*渠道", "expected_rows": 4, "key_check": "4渠道"}
+{"id": "T92", "category": "statistic", "dataset": "ecommerce_10k.csv", "question": "总销售额", "expected_sql_pattern": "SUM.*销售额", "expected_rows_ge": 1, "key_check": "SUM销售额"}
+{"id": "T93", "category": "statistic", "dataset": "ecommerce_10k.csv", "question": "平均订单金额", "expected_sql_pattern": "AVG.*销售额|平均", "expected_rows_ge": 1, "key_check": "AVG销售额"}
+{"id": "T94", "category": "statistic", "dataset": "ecommerce_10k.csv", "question": "销售额最大值", "expected_sql_pattern": "MAX.*销售额", "expected_rows_ge": 1, "key_check": "MAX"}
+{"id": "T95", "category": "statistic", "dataset": "ecommerce_10k.csv", "question": "销售额最小值", "expected_sql_pattern": "MIN.*销售额", "expected_rows_ge": 1, "key_check": "MIN"}
+{"id": "T96", "category": "single_filter", "dataset": "ecommerce_10k.csv", "question": "天猫的订单", "expected_sql_pattern": "渠道.*=.*天猫", "expected_rows_ge": 1, "key_check": "天猫过滤"}
+{"id": "T97", "category": "single_filter", "dataset": "ecommerce_10k.csv", "question": "已完成的订单", "expected_sql_pattern": "状态.*=.*已完成", "expected_rows_ge": 1, "key_check": "已完成"}
+{"id": "T98", "category": "single_filter", "dataset": "ecommerce_10k.csv", "question": "电子产品类的销售总额", "expected_sql_pattern": "品类.*电子产品|电子产品", "expected_rows_ge": 1, "key_check": "电子产品"}
+{"id": "T99", "category": "threshold_filter", "dataset": "ecommerce_10k.csv", "question": "销售额大于2000的订单", "expected_sql_pattern": "销售额.*>.*2000", "expected_rows_ge": 1, "key_check": ">2000"}
+{"id": "T100", "category": "threshold_filter", "dataset": "ecommerce_10k.csv", "question": "数量大于3的", "expected_sql_pattern": "数量.*>.*3|数量.*>", "expected_rows_ge": 1, "key_check": ">3数量"}
+{"id": "T101", "category": "threshold_filter", "dataset": "ecommerce_10k.csv", "question": "有折扣的订单", "expected_sql_pattern": "折扣率.*>|折扣率", "expected_rows_ge": 1, "key_check": "折扣>0"}
+{"id": "T102", "category": "range_filter", "dataset": "ecommerce_10k.csv", "question": "2025年1月10日到1月20日的订单", "expected_sql_pattern": "日期.*>=|日期.*<=", "expected_rows_ge": 1, "key_check": "1月10-20日"}
+{"id": "T103", "category": "time_after", "dataset": "ecommerce_10k.csv", "question": "2025年1月15日之后的订单", "expected_sql_pattern": "日期.*>=.*2025-01-15|日期.*>=", "expected_rows_ge": 1, "key_check": "1/15之后"}
+{"id": "T104", "category": "time_before", "dataset": "ecommerce_10k.csv", "question": "2025年1月之前的销售", "expected_sql_pattern": "日期.*<.*2025-02|日期.*<.*2025", "expected_rows_ge": 1, "key_check": "1月之前"}
+{"id": "T105", "category": "multi_condition", "dataset": "ecommerce_10k.csv", "question": "天猫且已完成的订单", "expected_sql_pattern": "渠道.*天猫.*状态.*已完成|状态.*完成.*渠道.*天猫", "expected_rows_ge": 1, "key_check": "AND"}
+{"id": "T106", "category": "multi_condition", "dataset": "ecommerce_10k.csv", "question": "服装类销售额大于1000", "expected_sql_pattern": "品类.*服装.*销售额.*>|服装.*销售额.*>", "expected_rows_ge": 1, "key_check": "服装>1000"}
+{"id": "T107", "category": "trend_group", "dataset": "ecommerce_10k.csv", "question": "每日销售额趋势", "expected_sql_pattern": "SUM.*销售额|GROUP BY.*日期", "expected_rows_ge": 10, "key_check": "按日SUM"}
+{"id": "T108", "category": "having", "dataset": "ecommerce_10k.csv", "question": "各品类销售额超过500万的", "expected_sql_pattern": "HAVING.*销售额|销售额.*>.*500", "expected_rows_ge": 1, "key_check": "品类SUM>500W"}
+{"id": "T109", "category": "ratio", "dataset": "ecommerce_10k.csv", "question": "各品类销售额占比", "expected_sql_pattern": "占比|百分比|SUM.*销售额", "expected_rows": 5, "key_check": "品类占比"}
+{"id": "T110", "category": "ratio", "dataset": "ecommerce_10k.csv", "question": "各渠道占比", "expected_sql_pattern": "占比|百分比|GROUP BY.*渠道", "expected_rows": 4, "key_check": "渠道占比"}
+{"id": "T111", "category": "cumulative", "dataset": "ecommerce_10k.csv", "question": "累计销售额", "expected_sql_pattern": "CUMULATIVE|SUM.*OVER|累计", "expected_rows_ge": 1, "key_check": "累计"}
+{"id": "T112", "category": "like_filter", "dataset": "ecommerce_10k.csv", "question": "商品名含'手机'的产品", "expected_sql_pattern": "商品名.*LIKE|手机", "expected_rows_ge": 1, "key_check": "手机LIKE"}
+{"id": "T113", "category": "scalar_avg", "dataset": "ecommerce_10k.csv", "question": "平均折扣率", "expected_sql_pattern": "AVG.*折扣率|平均.*折扣", "expected_rows_ge": 1, "key_check": "AVG折扣"}
+{"id": "T114", "category": "ranking_date", "dataset": "ecommerce_10k.csv", "question": "销售额最高的5个订单", "expected_sql_pattern": "ORDER BY.*销售额.*DESC.*LIMIT.*5", "expected_rows": 5, "key_check": "TOP5"}
+{"id": "T115", "category": "comparison", "dataset": "ecommerce_10k.csv", "question": "天猫和京东对比", "expected_sql_pattern": "渠道.*(天猫|京东)|天猫.*京东", "expected_rows_ge": 2, "key_check": "天京对比"}
+{"id": "T116", "category": "time_range", "dataset": "ecommerce_10k.csv", "question": "2025年Q1的订单", "expected_sql_pattern": "日期.*>=.*2025-01|日期.*<=", "expected_rows_ge": 1, "key_check": "Q1"}
+{"id": "T117", "category": "trend_group", "dataset": "ecommerce_10k.csv", "question": "各品类订单数", "expected_sql_pattern": "GROUP BY.*品类|COUNT", "expected_rows": 5, "key_check": "品类COUNT"}
+{"id": "T118", "category": "single_filter", "dataset": "ecommerce_10k.csv", "question": "拼多多的订单", "expected_sql_pattern": "渠道.*=.*拼多多|拼多多", "expected_rows_ge": 1, "key_check": "拼多多"}
+{"id": "T119", "category": "threshold_filter", "dataset": "ecommerce_10k.csv", "question": "折扣率大于0.1的订单", "expected_sql_pattern": "折扣率.*>.*0.1|折扣率.*>", "expected_rows_ge": 1, "key_check": ">0.1折扣"}
+{"id": "T202", "category": "multi_metric_scalar", "dataset": "sales.csv", "question": "计算总销售额和总销售数量", "expected_sql_pattern": "SUM.*销售额.*SUM.*数量|SUM.*数量.*SUM.*销售额", "expected_rows": 1, "key_check": "双指标SUM"}
+{"id": "T_产品", "category": "multi_metric_dim", "dataset": "sales.csv", "question": "按产品类别统计总销售额和总数量", "expected_sql_pattern": "SELECT.*产品.*SUM.*销售额.*SUM.*数量.*GROUP BY", "expected_rows": 3, "key_check": "双指标多维度"}
+{"id": "T_区域", "category": "group_extreme", "dataset": "sales.csv", "question": "按销售区域统计总销售额，找出最高区域", "expected_sql_pattern": "GROUP BY.*城市|SUM.*城市", "expected_rows_ge": 3, "key_check": "最高区域标注"}
+{"id": "T_日期", "category": "date_extreme", "dataset": "sales.csv", "question": "按日期统计每日销售额，找出最高和最低日期", "expected_sql_pattern": "GROUP BY.*日期|SUM.*日期", "expected_rows_ge": 5, "key_check": "最高最低日期"}
+{"id": "T_F4_a", "category": "compound_extreme_ratio", "dataset": "sales.csv", "question": "销售额最高类别占总销售额的百分比", "expected_sql_pattern": "SELECT.*城市.*SUM.*销售额.*ROUND.*GROUP BY.*城市", "expected_rows": 1, "key_check": "最高占比"}
+{"id": "T_F4_b", "category": "compound_extreme_ratio", "dataset": "sales.csv", "question": "哪个产品类别销售额占总销售额比例最高", "expected_sql_pattern": "SELECT.*产品.*SUM.*销售额.*ROUND.*GROUP BY.*产品", "expected_rows": 1, "key_check": "占比最高"}
+{"id": "T_DailyAvg", "category": "daily_avg", "dataset": "ecommerce_10k.csv", "question": "日均交易笔数是多少", "expected_sql_pattern": "COUNT.*DISTINCT.*日期", "expected_rows": 1, "key_check": "日均COUNT/DISTINCT日期"}
+{"id": "T_DistProd", "category": "count_distinct", "dataset": "ecommerce_10k.csv", "question": "共有多少种不同的产品", "expected_sql_pattern": "COUNT.*DISTINCT.*商品名", "expected_rows": 1, "key_check": "产品→商品名映射"}
+{"id": "T_DistCate", "category": "count_distinct", "dataset": "ecommerce_10k.csv", "question": "共有多少种不同的品类", "expected_sql_pattern": "COUNT.*DISTINCT.*品类", "expected_rows": 1, "key_check": "品类去重"}
+{"id": "T120", "category": "trend_group", "dataset": "finance.csv", "question": "按月统计营收总额", "expected_sql_pattern": "GROUP BY.*日期|GROUP BY.*月份", "expected_rows": 24, "key_check": "按月SUM"}
+{"id": "T121", "category": "trend_group", "dataset": "finance.csv", "question": "按月统计成本总额", "expected_sql_pattern": "GROUP BY.*日期|GROUP BY.*月份", "expected_rows": 24, "key_check": "按月SUM"}
+{"id": "T122", "category": "statistic", "dataset": "finance.csv", "question": "营收总额", "expected_sql_pattern": "SUM.*营收", "expected_rows_ge": 1, "key_check": "SUM营收"}
+{"id": "T123", "category": "statistic", "dataset": "finance.csv", "question": "平均营收", "expected_sql_pattern": "AVG.*营收", "expected_rows_ge": 1, "key_check": "AVG营收"}
+{"id": "T124", "category": "statistic", "dataset": "finance.csv", "question": "最大营收月份", "expected_sql_pattern": "MAX.*营收|最大", "expected_rows_ge": 1, "key_check": "MAX营收"}
+{"id": "T125", "category": "statistic", "dataset": "finance.csv", "question": "最小营收", "expected_sql_pattern": "MIN.*营收|最小", "expected_rows_ge": 1, "key_check": "MIN营收"}
+{"id": "T126", "category": "scalar_avg", "dataset": "finance.csv", "question": "平均毛利率", "expected_sql_pattern": "AVG.*毛利率|平均.*毛利率", "expected_rows_ge": 1, "key_check": "AVG毛利率"}
+{"id": "T127", "category": "statistic", "dataset": "finance.csv", "question": "最高毛利率", "expected_sql_pattern": "MAX.*毛利率|最大.*毛利率", "expected_rows_ge": 1, "key_check": "MAX毛利率"}
+{"id": "T128", "category": "statistic", "dataset": "finance.csv", "question": "最低毛利率", "expected_sql_pattern": "MIN.*毛利率|最小.*毛利率", "expected_rows_ge": 1, "key_check": "MIN毛利率"}
+{"id": "T129", "category": "scalar_avg", "dataset": "finance.csv", "question": "平均汇率", "expected_sql_pattern": "AVG.*汇率|平均.*汇率", "expected_rows_ge": 1, "key_check": "AVG汇率"}
+{"id": "T130", "category": "statistic", "dataset": "finance.csv", "question": "最高汇率", "expected_sql_pattern": "MAX.*汇率|最大.*汇率", "expected_rows_ge": 1, "key_check": "MAX汇率"}
+{"id": "T131", "category": "threshold_filter", "dataset": "finance.csv", "question": "营收超过15万的月份", "expected_sql_pattern": "营收.*>.*150000|营收.*>", "expected_rows_ge": 1, "key_check": ">15万"}
+{"id": "T132", "category": "threshold_filter", "dataset": "finance.csv", "question": "汇率大于7.2的月份", "expected_sql_pattern": "汇率.*>.*7.2|汇率.*>", "expected_rows_ge": 1, "key_check": ">7.2"}
+{"id": "T133", "category": "threshold_filter", "dataset": "finance.csv", "question": "毛利率低于40%的月份", "expected_sql_pattern": "毛利率.*<.*40|毛利率.*<", "expected_rows": 0, "key_check": "<40%"}
+{"id": "T134", "category": "scalar_count", "dataset": "finance.csv", "question": "一共有多少个月份", "expected_sql_pattern": "COUNT", "expected_rows": 1, "key_check": "24月"}
+{"id": "T135", "category": "ranking", "dataset": "finance.csv", "question": "营收最高的5个月", "expected_sql_pattern": "ORDER BY.*营收.*DESC.*LIMIT.*5", "expected_rows": 5, "key_check": "TOP5营收"}
+{"id": "T136", "category": "ranking", "dataset": "finance.csv", "question": "成本最低的3个月", "expected_sql_pattern": "ORDER BY.*成本.*ASC.*LIMIT.*3|ORDER BY.*成本.*LIMIT.*3", "expected_rows": 3, "key_check": "成本最低"}
+{"id": "T137", "category": "time_after", "dataset": "finance.csv", "question": "2025年的月份记录", "expected_sql_pattern": "日期.*>=.*2025|日期.*2025", "expected_rows_ge": 10, "key_check": "2025"}
+{"id": "T138", "category": "time_before", "dataset": "finance.csv", "question": "2024年的月份记录", "expected_sql_pattern": "日期.*<.*2025|日期.*2024", "expected_rows_ge": 10, "key_check": "2024"}
+{"id": "T139", "category": "time_range", "dataset": "finance.csv", "question": "2025年上半年的月份", "expected_sql_pattern": "日期.*>=.*2025-01|日期.*<=", "expected_rows_ge": 6, "key_check": "2025H1"}
+{"id": "T140", "category": "time_range", "dataset": "finance.csv", "question": "2024年10月到12月的月份", "expected_sql_pattern": "日期.*>=.*2024-10|日期.*<=", "expected_rows": 3, "key_check": "2024Q4"}
+{"id": "T141", "category": "aggregation_group", "dataset": "finance.csv", "question": "按币种统计营收", "expected_sql_pattern": "GROUP BY.*币种", "expected_rows": 2, "key_check": "币种分组"}
+{"id": "T142", "category": "having", "dataset": "finance.csv", "question": "营收超过10万的月份", "expected_sql_pattern": "营收.*>|HAVING", "expected_rows_ge": 12, "key_check": ">10万"}
+{"id": "T143", "category": "ratio", "dataset": "finance.csv", "question": "成本占营收比例", "expected_sql_pattern": "占比|百分比|成本.*营收", "expected_rows_ge": 1, "key_check": "成本占比"}
+{"id": "T144", "category": "multi_condition", "dataset": "finance.csv", "question": "2025年营收超过20万的月份", "expected_sql_pattern": "日期.*2025.*营收.*>|营收.*>.*2025", "expected_rows_ge": 1, "key_check": "2025且>20万"}
+{"id": "T145", "category": "cumulative", "dataset": "finance.csv", "question": "累计营收", "expected_sql_pattern": "CUMULATIVE|SUM.*OVER|累计", "expected_rows_ge": 1, "key_check": "累计营收"}
+{"id": "T146", "category": "count_distinct", "dataset": "finance.csv", "question": "有多少个币种", "expected_sql_pattern": "DISTINCT.*币种|COUNT.*币种", "expected_rows": 1, "key_check": "2币种"}
+{"id": "T147", "category": "comparison", "dataset": "finance.csv", "question": "营收最高月份", "expected_sql_pattern": "MAX.*营收|最大", "expected_rows_ge": 1, "key_check": "单月最高"}
+{"id": "T148", "category": "threshold_filter", "dataset": "finance.csv", "question": "毛利率大于40的", "expected_sql_pattern": "毛利率.*>.*40|毛利率.*>", "expected_rows_ge": 1, "key_check": ">40%"}
+{"id": "T149", "category": "range_filter", "dataset": "finance.csv", "question": "2024年6月到12月的月份数据", "expected_sql_pattern": "日期.*>=|日期.*<=", "expected_rows_ge": 5, "key_check": "6-12月"}
+{"id": "T150", "category": "like_filter", "dataset": "dirty_data.csv", "question": "姓名含张的员工", "expected_sql_pattern": "姓名.*LIKE|张", "expected_rows_ge": 1, "key_check": "LIKE 张"}
+{"id": "T151", "category": "single_filter", "dataset": "dirty_data.csv", "question": "研发部的员工", "expected_sql_pattern": "部门.*=.*研发|研发", "expected_rows_ge": 5, "key_check": "研发员工"}
+{"id": "T152", "category": "single_filter", "dataset": "dirty_data.csv", "question": "销售部的员工", "expected_sql_pattern": "部门.*=.*销售|销售", "expected_rows_ge": 4, "key_check": "销售员工"}
+{"id": "T153", "category": "single_filter", "dataset": "dirty_data.csv", "question": "人事部的员工", "expected_sql_pattern": "部门.*=.*人事|人事", "expected_rows": 2, "key_check": "人事=2"}
+{"id": "T154", "category": "aggregation_group", "dataset": "dirty_data.csv", "question": "各部门人数", "expected_sql_pattern": "GROUP BY.*部门", "expected_rows_ge": 3, "key_check": "部门分组"}
+{"id": "T155", "category": "statistic", "dataset": "dirty_data.csv", "question": "薪资总额", "expected_sql_pattern": "SUM.*薪资", "expected_rows_ge": 1, "key_check": "SUM薪资"}
+{"id": "T156", "category": "scalar_avg", "dataset": "dirty_data.csv", "question": "平均薪资", "expected_sql_pattern": "AVG.*薪资", "expected_rows_ge": 1, "key_check": "AVG薪资"}
+{"id": "T157", "category": "threshold_filter", "dataset": "dirty_data.csv", "question": "薪资大于15000的员工", "expected_sql_pattern": "薪资.*>.*15000|薪资.*>", "expected_rows_ge": 3, "key_check": ">15000"}
+{"id": "T158", "category": "threshold_filter", "dataset": "dirty_data.csv", "question": "薪资小于13000的", "expected_sql_pattern": "薪资.*<.*13000|薪资.*<", "expected_rows_ge": 3, "key_check": "<13000"}
+{"id": "T159", "category": "ranking", "dataset": "dirty_data.csv", "question": "薪资最高的3个员工", "expected_sql_pattern": "ORDER BY.*薪资.*DESC.*LIMIT.*3", "expected_rows": 3, "key_check": "TOP3"}
+{"id": "T160", "category": "ranking", "dataset": "dirty_data.csv", "question": "薪资最低的3个", "expected_sql_pattern": "ORDER BY.*薪资.*ASC.*LIMIT.*3", "expected_rows": 3, "key_check": "最低3"}
+{"id": "T161", "category": "scalar_count", "dataset": "dirty_data.csv", "question": "一共有多少员工", "expected_sql_pattern": "COUNT", "expected_rows_ge": 1, "key_check": "总行数"}
+{"id": "T162", "category": "scalar_count", "dataset": "dirty_data.csv", "question": "研发部员工人数", "expected_sql_pattern": "COUNT|研发", "expected_rows_ge": 1, "key_check": "研发数"}
+{"id": "T163", "category": "count_distinct", "dataset": "dirty_data.csv", "question": "有多少个部门", "expected_sql_pattern": "DISTINCT.*部门|COUNT.*部门", "expected_rows_ge": 3, "key_check": "部门数"}
+{"id": "T164", "category": "count_distinct", "dataset": "dirty_data.csv", "question": "不重复员工数", "expected_sql_pattern": "DISTINCT.*姓名|COUNT", "expected_rows_ge": 1, "key_check": "去重姓名"}
+{"id": "T165", "category": "multi_condition", "dataset": "dirty_data.csv", "question": "研发部薪资大于15000", "expected_sql_pattern": "研发.*薪资.*>|薪资.*>.*研发", "expected_rows_ge": 1, "key_check": "研发>15000"}
+{"id": "T166", "category": "range_filter", "dataset": "dirty_data.csv", "question": "薪资在13000到18000之间的", "expected_sql_pattern": "薪资.*BETWEEN|薪资.*>=.*<=", "expected_rows_ge": 3, "key_check": "13000-18000"}
+{"id": "T167", "category": "statistic", "dataset": "dirty_data.csv", "question": "薪资的最大值", "expected_sql_pattern": "MAX.*薪资", "expected_rows_ge": 1, "key_check": "MAX"}
+{"id": "T168", "category": "statistic", "dataset": "dirty_data.csv", "question": "薪资的最小值", "expected_sql_pattern": "MIN.*薪资", "expected_rows_ge": 1, "key_check": "MIN"}
+{"id": "T169", "category": "like_filter", "dataset": "dirty_data.csv", "question": "姓名里含'刘'的员工", "expected_sql_pattern": "姓名.*LIKE.*刘|LIKE.*刘", "expected_rows": 2, "key_check": "刘七+刘九"}
+{"id": "T170", "category": "like_filter", "dataset": "dirty_data.csv", "question": "姓名以'王'开头的", "expected_sql_pattern": "LIKE.*王%|姓名.*王", "expected_rows_ge": 1, "key_check": "王五+王十四"}
+{"id": "T171", "category": "having", "dataset": "dirty_data.csv", "question": "各部门平均薪资超过15000", "expected_sql_pattern": "AVG.*薪资|HAVING", "expected_rows_ge": 1, "key_check": "AVG>15000"}
+{"id": "T172", "category": "trend_group", "dataset": "dirty_data.csv", "question": "各入职年份人数", "expected_sql_pattern": "GROUP BY.*入职|COUNT", "expected_rows_ge": 3, "key_check": "按年"}
+{"id": "T173", "category": "single_filter", "dataset": "dirty_data.csv", "question": "2020年入职的员工", "expected_sql_pattern": "入职.*2020|2020", "expected_rows_ge": 2, "key_check": "2020"}
+{"id": "T174", "category": "threshold_filter", "dataset": "dirty_data.csv", "question": "薪资超过18000的", "expected_sql_pattern": "薪资.*>.*18000|薪资.*>", "expected_rows_ge": 2, "key_check": ">18000"}
+{"id": "T175", "category": "single_filter", "dataset": "leap_year.csv", "question": "2024-02-29这条记录", "expected_sql_pattern": "日期.*=.*2024-02-29|2024-02-29", "expected_rows": 1, "key_check": "闰年当日"}
+{"id": "T176", "category": "single_filter", "dataset": "leap_year.csv", "question": "闰年当日的数据", "expected_sql_pattern": "日期.*2024-02-29|闰年", "expected_rows": 1, "key_check": "2024-02-29"}
+{"id": "T177", "category": "single_filter", "dataset": "leap_year.csv", "question": "季末的销售总额", "expected_sql_pattern": "备注.*季末|季末", "expected_rows_ge": 1, "key_check": "季末标记"}
+{"id": "T178", "category": "single_filter", "dataset": "leap_year.csv", "question": "北京的销售记录", "expected_sql_pattern": "城市.*=.*北京|北京", "expected_rows_ge": 4, "key_check": "北京"}
+{"id": "T179", "category": "single_filter", "dataset": "leap_year.csv", "question": "上海的记录", "expected_sql_pattern": "城市.*=.*上海|上海", "expected_rows_ge": 4, "key_check": "上海"}
+{"id": "T180", "category": "single_filter", "dataset": "leap_year.csv", "question": "深圳的销售", "expected_sql_pattern": "城市.*=.*深圳|深圳", "expected_rows_ge": 3, "key_check": "深圳"}
+{"id": "T181", "category": "time_after", "dataset": "leap_year.csv", "question": "2025年1月到12月的销售总额", "expected_sql_pattern": "日期.*>=.*2025-01|日期.*<=", "expected_rows_ge": 1, "key_check": "2025"}
+{"id": "T182", "category": "time_before", "dataset": "leap_year.csv", "question": "2024年1月到12月的销售总额", "expected_sql_pattern": "日期.*<.*2025|日期.*2024", "expected_rows_ge": 1, "key_check": "2024"}
+{"id": "T183", "category": "time_range", "dataset": "leap_year.csv", "question": "2024年Q1的数据", "expected_sql_pattern": "日期.*>=.*2024-01|日期.*<=", "expected_rows_ge": 3, "key_check": "2024Q1"}
+{"id": "T184", "category": "time_range", "dataset": "leap_year.csv", "question": "2025年Q1的记录", "expected_sql_pattern": "日期.*>=.*2025-01|日期.*<=", "expected_rows_ge": 3, "key_check": "2025Q1"}
+{"id": "T185", "category": "aggregation_group", "dataset": "leap_year.csv", "question": "各城市销售额", "expected_sql_pattern": "GROUP BY.*城市", "expected_rows": 4, "key_check": "4城市"}
+{"id": "T186", "category": "aggregation_group", "dataset": "leap_year.csv", "question": "各年销售额", "expected_sql_pattern": "GROUP BY|GROUP BY.*日期", "expected_rows_ge": 2, "key_check": "按年"}
+{"id": "T187", "category": "statistic", "dataset": "leap_year.csv", "question": "总销售额", "expected_sql_pattern": "SUM.*销售额", "expected_rows_ge": 1, "key_check": "SUM"}
+{"id": "T188", "category": "statistic", "dataset": "leap_year.csv", "question": "平均销售额", "expected_sql_pattern": "AVG.*销售额", "expected_rows_ge": 1, "key_check": "AVG"}
+{"id": "T189", "category": "statistic", "dataset": "leap_year.csv", "question": "最大销售额", "expected_sql_pattern": "MAX.*销售额", "expected_rows_ge": 1, "key_check": "MAX"}
+{"id": "T190", "category": "ranking", "dataset": "leap_year.csv", "question": "销售额最高的5条", "expected_sql_pattern": "ORDER BY.*销售额.*DESC.*LIMIT.*5", "expected_rows": 5, "key_check": "TOP5"}
+{"id": "T191", "category": "threshold_filter", "dataset": "leap_year.csv", "question": "销售额大于2000的记录", "expected_sql_pattern": "销售额.*>.*2000|销售额.*>", "expected_rows_ge": 3, "key_check": ">2000"}
+{"id": "T192", "category": "threshold_filter", "dataset": "leap_year.csv", "question": "销售额大于1500的订单明细", "expected_sql_pattern": "WHERE.*销售额.*>|销售额.*>.*1500", "expected_rows": 4, "key_check": ">1500"}
+{"id": "T193", "category": "range_filter", "dataset": "leap_year.csv", "question": "2024年2月的销售总额", "expected_sql_pattern": "日期.*>=.*2024-02|日期.*<=", "expected_rows_ge": 1, "key_check": "2024年2月"}
+{"id": "T194", "category": "single_filter", "dataset": "leap_year.csv", "question": "2024-02-28这条记录", "expected_sql_pattern": "日期.*=.*2024-02-28|2024-02-28", "expected_rows_ge": 1, "key_check": "2月28日"}
+{"id": "T195", "category": "cumulative", "dataset": "leap_year.csv", "question": "累计销售额", "expected_sql_pattern": "CUMULATIVE|SUM.*OVER|累计", "expected_rows_ge": 1, "key_check": "累计"}
+{"id": "T196", "category": "ratio", "dataset": "leap_year.csv", "question": "各城市销售额占比", "expected_sql_pattern": "占比|百分比|GROUP BY.*城市", "expected_rows": 4, "key_check": "城市占比"}
+{"id": "T197", "category": "having", "dataset": "leap_year.csv", "question": "每个城市销售额总和超过5000", "expected_sql_pattern": "HAVING.*销售额|SUM.*销售额.*>|城市.*SUM", "expected_rows_ge": 1, "key_check": ">5000"}
+{"id": "T198", "category": "count_distinct", "dataset": "leap_year.csv", "question": "有多少个城市", "expected_sql_pattern": "DISTINCT.*城市|COUNT.*城市", "expected_rows": 4, "key_check": "4城市"}
+{"id": "T199", "category": "comparison", "dataset": "leap_year.csv", "question": "北京和上海对比", "expected_sql_pattern": "城市.*(北京|上海)|北京.*上海", "expected_rows_ge": 2, "key_check": "对比"}
+{"id": "Q40", "category": "half_month_range", "dataset": "ecommerce_10k.csv", "question": "上半月销售额是多少？", "expected_sql_pattern": "日期.*BETWEEN|日期.*>=.*2025-01-01", "key_check": "1-15日", "expected_rows_ge": 1}
+{"id": "Q41", "category": "half_month_range", "dataset": "ecommerce_10k.csv", "question": "下半月销售额是多少？", "expected_sql_pattern": "日期.*BETWEEN|日期.*>=.*2025-01-16", "key_check": "16-30日", "expected_rows_ge": 1}
+{"id": "Q42", "category": "daily_avg", "dataset": "ecommerce_10k.csv", "question": "日均销售额是多少？", "expected_sql_pattern": "CAST.*SUM.*COUNT.*DISTINCT.*日期", "key_check": "SUM销售额/COUNT DISTINCT日期", "expected_rows_ge": 1}
+{"id": "Q43", "category": "daily_avg", "dataset": "ecommerce_10k.csv", "question": "日均交易笔数是多少？", "expected_sql_pattern": "CAST.*COUNT.*COUNT.*DISTINCT.*日期", "key_check": "COUNT/COUNT DISTINCT日期", "expected_rows_ge": 1}
+{"id": "Q44", "category": "count_distinct", "dataset": "ecommerce_10k.csv", "question": "共有多少种不同的产品？", "expected_sql_pattern": "COUNT.*DISTINCT.*商品名", "key_check": "25种产品", "expected_rows_ge": 1}
+{"id": "Q45", "category": "avg_per_group", "dataset": "ecommerce_10k.csv", "question": "平均每种产品的销售额是多少？", "expected_sql_pattern": ".*", "key_check": "平均每产品销售额>0", "expected_rows_ge": 1}
+{"id": "Q37", "category": "single_entity_ratio", "dataset": "sales_team.csv", "question": "张伟的销售额占总销售额的百分比是多少？", "expected_sql_pattern": "ROUND.*SELECT SUM.*WHERE.*销售员", "expected_rows": 1, "key_check": "单实体占比"}
+{"id": "Q38", "category": "single_entity_ratio", "dataset": "sales_team.csv", "question": "华东区域的销售额占总销售额的百分比", "expected_sql_pattern": "销售区域.*ROUND|ROUND.*销售区域", "expected_rows": 1, "key_check": "区域单实体占比"}
+{"id": "Q39", "category": "single_entity_ratio", "dataset": "sales_team.csv", "question": "李娜占总销售额的百分比是多少？", "expected_sql_pattern": "ROUND.*SELECT SUM.*WHERE.*销售员", "expected_rows": 1, "key_check": "单实体占比"}
+{"id": "Q46", "category": "xun_time", "dataset": "sales_team.csv", "question": "上旬销售额是多少？", "expected_sql_pattern": ".*", "key_check": "上旬解析", "expected_rows_ge": 1}
+{"id": "Q47", "category": "xun_time", "dataset": "sales_team.csv", "question": "下旬销售额是多少？", "expected_sql_pattern": ".*", "key_check": "下旬解析", "expected_rows_ge": 1}
+{"id": "Q48", "category": "xun_time", "dataset": "sales_team.csv", "question": "中旬销售额是多少？", "expected_sql_pattern": ".*", "key_check": "中旬解析", "expected_rows_ge": 1}
+{"id": "Q49", "category": "time_comparison", "dataset": "sales_team.csv", "question": "中旬相比上旬销售额变化了多少？", "expected_sql_pattern": ".*", "key_check": "双时间段对比", "expected_rows_ge": 1}
+{"id": "Q50", "category": "time_comparison", "dataset": "sales_team.csv", "question": "本周相比上周销售额增长了多少？", "expected_sql_pattern": ".*", "key_check": "双周对比", "expected_rows_ge": 1}
+{"id": "Q51", "category": "count_distinct_list", "dataset": "sales_team.csv", "question": "共有多少种不同的产品？", "expected_sql_pattern": ".*", "key_check": "去重计数+列表展示", "expected_rows_ge": 1}
+{"id": "Q52", "category": "count_distinct_list", "dataset": "sales_team.csv", "question": "统计销售员种类数量", "expected_sql_pattern": ".*", "key_check": "去重计数+列表展示", "expected_rows_ge": 1}
+{"id": "Q-T3", "category": "period_over_period", "dataset": "sales_team.csv", "question": "销售额环比下降最大的是哪天？", "expected_sql_pattern": ".*", "key_check": "环比极值", "expected_rows_ge": 1}

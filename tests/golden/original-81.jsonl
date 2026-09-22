@@ -1,0 +1,83 @@
+{"id":"T01","category":"like_filter","dataset":"students.csv","question":"姓刘的同学","expected_sql_pattern":"姓名.*LIKE.*刘","expected_rows":2,"key_check":"姓名含'刘'"}
+{"id":"T02","category":"like_filter","dataset":"students.csv","question":"包含\"三\"的同学","expected_sql_pattern":"姓名.*LIKE.*三","expected_rows":2,"key_check":"含'三'=张三+王十四"}
+{"id":"T03","category":"ranking","dataset":"students.csv","question":"学号在前五名的同学","expected_sql_pattern":"ORDER BY.*学号.*LIMIT.*5","expected_rows":5,"key_check":"学号排序前5"}
+{"id":"T04","category":"ranking","dataset":"students.csv","question":"成绩最高的5个","expected_sql_pattern":"ORDER BY.*成绩.*DESC.*LIMIT.*5","expected_rows":5,"key_check":"成绩DESC前5"}
+{"id":"T05","category":"aggregation_group","dataset":"students.csv","question":"各性别人数","expected_sql_pattern":"GROUP BY.*性别","expected_rows":2,"key_check":"按性别分组计数"}
+{"id":"T06","category":"scalar_count","dataset":"students.csv","question":"男生人数","expected_sql_pattern":"COUNT|男","expected_rows_ge":1,"key_check":"男生标量"}
+{"id":"T07","category":"trend_group","dataset":"sales.csv","question":"各城市销售额趋势","expected_sql_pattern":"SUM.*销售额","expected_rows_ge":3,"key_check":"按城市SUM"}
+{"id":"T08","category":"ranking","dataset":"sales.csv","question":"销售额最高的产品","expected_sql_pattern":"ORDER BY.*DESC.*LIMIT","expected_rows_ge":1,"key_check":"产品SUM排序"}
+{"id":"T09","category":"single_filter","dataset":"sales.csv","question":"上海的销售额","expected_sql_pattern":"城市.*=.*上海","expected_rows":4,"key_check":"上海=4行"}
+{"id":"T10","category":"comparison","dataset":"sales.csv","question":"上海和北京的销售额对比","expected_sql_pattern":"城市.*(上海|北京)","expected_rows_ge":2,"key_check":"上海+北京聚合"}
+{"id":"T11","category":"ranking","dataset":"employees.csv","question":"薪资前3的员工","expected_sql_pattern":"ORDER BY.*薪资.*DESC.*LIMIT.*3","expected_rows":3,"key_check":"薪资DESC前3"}
+{"id":"T12","category":"ranking","dataset":"employees.csv","question":"薪资最高的5个员工","expected_sql_pattern":"ORDER BY.*薪资.*DESC.*LIMIT.*5","expected_rows":5,"key_check":"薪资DESC前5"}
+{"id":"T13","category":"scalar_count","dataset":"employees.csv","question":"研发部员工人数","expected_sql_pattern":"COUNT|部门.*研发|研发.*COUNT","expected_rows":1,"key_check":"研发=5人标量"}
+{"id":"T14","category":"like_filter","dataset":"employees.csv","question":"姓刘的员工","expected_sql_pattern":"姓名.*LIKE.*刘","expected_rows":2,"key_check":"姓刘=2人"}
+{"id":"T15","category":"single_filter","dataset":"employees.csv","question":"名字是张三","expected_sql_pattern":"姓名.*=.*张三","expected_rows":1,"key_check":"=非LIKE"}
+{"id":"T16","category":"like_filter","dataset":"employees.csv","question":"姓欧阳的同学","expected_sql_pattern":"姓名.*LIKE","expected_rows":0,"key_check":"空结果"}
+{"id":"T17","category":"like_filter","dataset":"sales.csv","question":"包含上海的记录","expected_sql_pattern":"城市.*LIKE.*上海","expected_rows":3,"key_check":"LIKE%上海%"}
+{"id":"T18","category":"like_filter","dataset":"sales.csv","question":"有上海的","expected_sql_pattern":"LIKE.*上海","expected_rows":3,"key_check":"'有'触发LIKE"}
+{"id":"T19","category":"threshold_filter","dataset":"students.csv","question":"成绩大于85的同学","expected_sql_pattern":"WHERE.*成绩.*>.*85","expected_rows":6,"key_check":"行级WHERE非SUM"}
+{"id":"T20","category":"range_filter","dataset":"employees.csv","question":"薪资在15000到20000之间的员工","expected_sql_pattern":"薪资.*(BETWEEN|>=.*<=)","expected_rows":4,"key_check":"BETWEEN范围"}
+{"id":"T21","category":"having","dataset":"sales.csv","question":"销售额超过2500的产品","expected_sql_pattern":"销售额.*>|HAVING.*销售额","expected_rows_ge":1,"key_check":">2500过滤"}
+{"id":"T22","category":"multi_condition","dataset":"employees.csv","question":"研发部薪资大于15000","expected_sql_pattern":"部门.*=.*研发.*薪资.*>","expected_rows":5,"key_check":"AND双条件"}
+{"id":"T23","category":"trend_group","dataset":"sales.csv","question":"各月销售额趋势","expected_sql_pattern":"SUM.*销售额","expected_rows_ge":3,"key_check":"按月SUM"}
+{"id":"T24","category":"time_after","dataset":"sales.csv","question":"2024年2月之后的销售","expected_sql_pattern":"日期.*>=.*2024-02","expected_rows_ge":1,"key_check":"'之后'开区间"}
+{"id":"T25","category":"statistic","dataset":"students.csv","question":"成绩的中位数","expected_sql_pattern":"成绩|MEDIAN|中位数","expected_rows_ge":1,"key_check":"中位数返回"}
+{"id":"T26","category":"ratio","dataset":"sales.csv","question":"各城市销售额占比","expected_sql_pattern":"占比|百分比|SUM.*销售额","expected_rows":5,"key_check":"5城市占比"}
+{"id":"T27","category":"count_distinct","dataset":"sales.csv","question":"有多少个城市","expected_sql_pattern":"DISTINCT|COUNT.*城市","expected_rows":5,"key_check":"5城市去重"}
+{"id":"T28","category":"ranking_date","dataset":"employees.csv","question":"入职日期最晚的3个员工","expected_sql_pattern":"ORDER BY.*入职日期.*DESC.*LIMIT.*3","expected_rows":3,"key_check":"日期排序"}
+{"id":"T29","category":"cumulative","dataset":"sales.csv","question":"累计销售额","expected_sql_pattern":"CUMULATIVE|SUM.*OVER|累计","expected_rows_ge":1,"key_check":"窗口函数"}
+{"id":"T30","category":"scalar_avg","dataset":"employees.csv","question":"平均薪资","expected_sql_pattern":"AVG.*薪资|平均.*薪资","expected_rows":1,"key_check":"AVG=14800"}
+{"id":"T31","category":"like_filter","dataset":"students.csv","question":"姓名里带'七'的同学","expected_sql_pattern":"LIKE.*七|姓名.*LIKE","expected_rows":1,"key_check":"'七'=1人(刘七)"}
+{"id":"T32","category":"like_filter","dataset":"students.csv","question":"学号里含2020的","expected_sql_pattern":"LIKE.*2020|学号.*LIKE","expected_rows":12,"key_check":"学号均含2020"}
+{"id":"T33","category":"like_filter","dataset":"sales.csv","question":"城市中有'北'的","expected_sql_pattern":"城市.*LIKE.*北|北.*LIKE","expected_rows":1,"key_check":"北京SUM=1行"}
+{"id":"T34","category":"single_filter","dataset":"sales.csv","question":"杭州的产品","expected_sql_pattern":"城市.*=.*杭州|杭州","expected_rows_ge":1,"key_check":"杭州至少1行"}
+{"id":"T35","category":"single_filter","dataset":"employees.csv","question":"销售部的员工","expected_sql_pattern":"部门.*=.*销售|销售","expected_rows_ge":2,"key_check":"销售部≥2人"}
+{"id":"T36","category":"aggregation_group","dataset":"sales.csv","question":"按日期统计销售额","expected_sql_pattern":"GROUP BY.*日期|日期.*SUM","expected_rows_ge":3,"key_check":"按日期分组"}
+{"id":"T37","category":"aggregation_group","dataset":"employees.csv","question":"各部门平均薪资","expected_sql_pattern":"AVG.*薪资|GROUP BY.*部门","expected_rows":3,"key_check":"3部门平均"}
+{"id":"T38","category":"aggregation_group","dataset":"students.csv","question":"各院系人数","expected_sql_pattern":"GROUP BY.*院系|院系.*COUNT","expected_rows":1,"key_check":"1院系=12人"}
+{"id":"T39","category":"scalar_count","dataset":"students.csv","question":"成绩及格的人数","expected_sql_pattern":"COUNT|成绩.*>=|及格","expected_rows":1,"key_check":"≥60分人数"}
+{"id":"T40","category":"scalar_count","dataset":"students.csv","question":"有多少女生","expected_sql_pattern":"性别.*女|女.*COUNT","expected_rows":1,"key_check":"女生数"}
+{"id":"T41","category":"threshold_filter","dataset":"students.csv","question":"成绩小于80的同学","expected_sql_pattern":"WHERE.*成绩.*<.*80|成绩.*<.*80","expected_rows":2,"key_check":"<80=2人(78,76)"}
+{"id":"T42","category":"threshold_filter","dataset":"employees.csv","question":"薪资超过20000的员工","expected_sql_pattern":"薪资.*>|HAVING.*薪资","expected_rows":1,"key_check":">20000=1人"}
+{"id":"T43","category":"threshold_filter","dataset":"sales.csv","question":"销售额低于1000的记录","expected_sql_pattern":"销售额.*<.*1000|销售额.*<.*1000","expected_rows":0,"key_check":"<1000=0条(最小1000)"}
+{"id":"T44","category":"range_filter","dataset":"students.csv","question":"成绩在80到90之间的同学","expected_sql_pattern":"成绩.*(BETWEEN|>=.*<=)","expected_rows_ge":3,"key_check":"80-90"}
+{"id":"T45","category":"range_filter","dataset":"sales.csv","question":"2024年1月到3月的销售","expected_sql_pattern":"日期.*>=|日期.*<=","expected_rows":5,"key_check":"Q1 5行"}
+{"id":"T46","category":"multi_condition","dataset":"sales.csv","question":"北京的销售额大于2000的记录","expected_sql_pattern":"城市.*北京.*销售额.*>|北京.*销售额.*>","expected_rows_ge":1,"key_check":"北京>2000"}
+{"id":"T47","category":"multi_condition","dataset":"employees.csv","question":"销售部薪资大于12000","expected_sql_pattern":"部门.*销售.*薪资.*>|销售.*薪资.*>","expected_rows_ge":1,"key_check":"销售>12000"}
+{"id":"T48","category":"time_after","dataset":"employees.csv","question":"2020年之后入职的员工","expected_sql_pattern":"入职日期.*>=.*2020","expected_rows_ge":5,"key_check":"2020+"}
+{"id":"T49","category":"time_before","dataset":"sales.csv","question":"2024年1月之前的数据","expected_sql_pattern":"日期.*<.*2024-02|日期.*<.*2024","expected_rows_ge":1,"key_check":"2024-01"}
+{"id":"T50","category":"ranking","dataset":"sales.csv","question":"销售额最低的产品","expected_sql_pattern":"ORDER BY.*ASC.*LIMIT|SUM.*产品.*ORDER.*ASC","expected_rows_ge":1,"key_check":"ASC"}
+{"id":"T51","category":"ranking","dataset":"employees.csv","question":"薪资最低的3个员工","expected_sql_pattern":"ORDER BY.*薪资.*ASC.*LIMIT.*3|ORDER BY.*薪资.*LIMIT.*3","expected_rows":3,"key_check":"asc"}
+{"id":"T52","category":"ranking","dataset":"students.csv","question":"成绩排名最后3名","expected_sql_pattern":"ORDER BY.*成绩.*ASC.*LIMIT.*3","expected_rows":3,"key_check":"成绩asc前3"}
+{"id":"T53","category":"statistic","dataset":"students.csv","question":"最高成绩","expected_sql_pattern":"MAX.*成绩|最高","expected_rows":1,"key_check":"MAX=95"}
+{"id":"T54","category":"statistic","dataset":"employees.csv","question":"薪资的最大值","expected_sql_pattern":"MAX.*薪资|最大.*薪资","expected_rows":1,"key_check":"MAX=22000"}
+{"id":"T55","category":"statistic","dataset":"sales.csv","question":"销售额最小值","expected_sql_pattern":"MIN.*销售额|最小.*销售额","expected_rows":1,"key_check":"MIN=1000"}
+{"id":"T56","category":"ratio","dataset":"students.csv","question":"男生占比","expected_sql_pattern":"百分比|占比|性别|男","expected_rows_ge":1,"key_check":"男生/总≥1"}
+{"id":"T57","category":"ratio","dataset":"employees.csv","question":"研发部的占比","expected_sql_pattern":"百分比|占比|部门.*研发|研发.*占","expected_rows_ge":1,"key_check":"研发占比≥1"}
+{"id":"T58","category":"count_distinct","dataset":"students.csv","question":"有多少个院系","expected_sql_pattern":"DISTINCT.*院系|COUNT.*院系","expected_rows":1,"key_check":"1院系"}
+{"id":"T59","category":"count_distinct","dataset":"employees.csv","question":"有多少个部门","expected_sql_pattern":"DISTINCT.*部门|COUNT.*部门|COUNT.*DISTINCT","expected_rows_ge":1,"key_check":"3部门≥1"}
+{"id":"T60","category":"cumulative","dataset":"employees.csv","question":"累计薪资","expected_sql_pattern":"SUM.*OVER|SUM.*累计|累计","expected_rows_ge":1,"key_check":"累计薪资"}
+{"id":"T61","category":"trend_group","dataset":"sales.csv","question":"每日销售额","expected_sql_pattern":"SUM.*销售额|日期.*SUM","expected_rows_ge":5,"key_check":"按日SUM"}
+{"id":"T62","category":"trend_group","dataset":"sales.csv","question":"各产品总销售额","expected_sql_pattern":"GROUP BY.*产品|产品.*SUM","expected_rows":3,"key_check":"产品A/B/C"}
+{"id":"T63","category":"comparison","dataset":"employees.csv","question":"销售部和研发部的薪资对比","expected_sql_pattern":"部门.*(销售|研发)|销售.*研发|研发.*销售","expected_rows_ge":2,"key_check":"两部门"}
+{"id":"T64","category":"comparison","dataset":"students.csv","question":"按性别看成绩对比","expected_sql_pattern":"性别|GROUP BY.*性别|男.*女","expected_rows_ge":2,"key_check":"性别对比"}
+{"id":"T65","category":"single_filter","dataset":"sales.csv","question":"深圳的销售","expected_sql_pattern":"城市.*=.*深圳","expected_rows_ge":1,"key_check":"深圳"}
+{"id":"T66","category":"single_filter","dataset":"employees.csv","question":"人事部的员工","expected_sql_pattern":"部门.*=.*人事|人事","expected_rows_ge":2,"key_check":"人事=2"}
+{"id":"T67","category":"like_filter","dataset":"sales.csv","question":"产品名里含'A'的产品","expected_sql_pattern":"产品.*LIKE.*A|LIKE.*A","expected_rows":1,"key_check":"产品A SUM=1行"}
+{"id":"T68","category":"like_filter","dataset":"employees.csv","question":"姓名以'张'开头的员工","expected_sql_pattern":"LIKE.*张%|姓名.*张","expected_rows_ge":1,"key_check":"张三"}
+{"id":"T69","category":"threshold_filter","dataset":"sales.csv","question":"销量超过100的产品","expected_sql_pattern":"数量.*>|数量.*>|销售.*数量","expected_rows_ge":1,"key_check":">100"}
+{"id":"T70","category":"threshold_filter","dataset":"students.csv","question":"成绩在85及以上的","expected_sql_pattern":"成绩.*[><=].*85|成绩.*85","expected_rows_ge":5,"key_check":"成绩>85≥5"}
+{"id":"T71","category":"ranking","dataset":"students.csv","question":"成绩排名前5","expected_sql_pattern":"ORDER BY.*成绩.*DESC.*LIMIT.*5","expected_rows":5,"key_check":"DESC前5"}
+{"id":"T72","category":"ranking","dataset":"sales.csv","question":"销量最大的3个城市","expected_sql_pattern":"ORDER BY.*数量.*DESC.*LIMIT.*3|数量.*DESC.*LIMIT.*3","expected_rows":3,"key_check":"数量DESC"}
+{"id":"T73","category":"statistic","dataset":"sales.csv","question":"总销售额","expected_sql_pattern":"SUM.*销售额|总.*销售","expected_rows_ge":1,"key_check":"总和≥1"}
+{"id":"T74","category":"statistic","dataset":"employees.csv","question":"薪资总和","expected_sql_pattern":"SUM.*薪资|总.*薪资","expected_rows_ge":1,"key_check":"总薪资≥1"}
+{"id":"T75","category":"aggregation_group","dataset":"sales.csv","question":"各产品销量","expected_sql_pattern":"GROUP BY.*产品|产品.*SUM","expected_rows":3,"key_check":"产品SUM"}
+{"id":"T76","category":"threshold_filter","dataset":"sales.csv","question":"深圳的销售额","expected_sql_pattern":"深圳|城市.*深圳|深圳.*销售额","expected_rows":2,"key_check":"深圳=2行"}
+{"id":"T77","category":"time_range","dataset":"sales.csv","question":"2024年Q1的销售","expected_sql_pattern":"日期.*>=.*2024-01|日期.*<=","expected_rows_ge":3,"key_check":"Q1"}
+{"id":"T78","category":"comparison","dataset":"sales.csv","question":"北京和上海对比","expected_sql_pattern":"北京.*上海|上海.*北京","expected_rows_ge":2,"key_check":"京沪对比"}
+{"id":"T79","category":"aggregation_group","dataset":"students.csv","question":"各班级人数","expected_sql_pattern":"GROUP BY.*班级|班级.*COUNT","expected_rows_ge":1,"key_check":"班级分组"}
+{"id":"T80","category":"count_distinct","dataset":"sales.csv","question":"产品种类数","expected_sql_pattern":"DISTINCT.*产品|COUNT.*产品","expected_rows":3,"key_check":"3产品"}
+{"id":"T81","category":"threshold_filter","dataset":"students.csv","question":"成绩不及格的同学","expected_sql_pattern":"成绩.*<.*60|成绩.*<.*60","expected_rows":0,"key_check":"无不及格"}
+{"id":"T200","category":"ranking","dataset":"students.csv","question":"学号前2个同学","expected_sql_pattern":"ORDER BY.*学号.*ASC.*LIMIT.*2","expected_rows":2,"key_check":"学号最小2个"}
+{"id":"T201","category":"ranking","dataset":"students.csv","question":"学号前两名的同学","expected_sql_pattern":"ORDER BY.*学号.*ASC.*LIMIT.*2","expected_rows":2,"key_check":"学号最小2个"}

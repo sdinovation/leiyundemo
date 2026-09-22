@@ -1,0 +1,30 @@
+{"id":"T120","category":"trend_group","dataset":"finance.csv","question":"按月统计营收总额","expected_sql_pattern":"GROUP BY.*日期|GROUP BY.*月份","expected_rows":24,"key_check":"按月SUM"}
+{"id":"T121","category":"trend_group","dataset":"finance.csv","question":"按月统计成本总额","expected_sql_pattern":"GROUP BY.*日期|GROUP BY.*月份","expected_rows":24,"key_check":"按月SUM"}
+{"id":"T122","category":"statistic","dataset":"finance.csv","question":"营收总额","expected_sql_pattern":"SUM.*营收","expected_rows_ge":1,"key_check":"SUM营收"}
+{"id":"T123","category":"statistic","dataset":"finance.csv","question":"平均营收","expected_sql_pattern":"AVG.*营收","expected_rows_ge":1,"key_check":"AVG营收"}
+{"id":"T124","category":"statistic","dataset":"finance.csv","question":"最大营收月份","expected_sql_pattern":"MAX.*营收|最大","expected_rows_ge":1,"key_check":"MAX营收"}
+{"id":"T125","category":"statistic","dataset":"finance.csv","question":"最小营收","expected_sql_pattern":"MIN.*营收|最小","expected_rows_ge":1,"key_check":"MIN营收"}
+{"id":"T126","category":"scalar_avg","dataset":"finance.csv","question":"平均毛利率","expected_sql_pattern":"AVG.*毛利率|平均.*毛利率","expected_rows_ge":1,"key_check":"AVG毛利率"}
+{"id":"T127","category":"statistic","dataset":"finance.csv","question":"最高毛利率","expected_sql_pattern":"MAX.*毛利率|最大.*毛利率","expected_rows_ge":1,"key_check":"MAX毛利率"}
+{"id":"T128","category":"statistic","dataset":"finance.csv","question":"最低毛利率","expected_sql_pattern":"MIN.*毛利率|最小.*毛利率","expected_rows_ge":1,"key_check":"MIN毛利率"}
+{"id":"T129","category":"scalar_avg","dataset":"finance.csv","question":"平均汇率","expected_sql_pattern":"AVG.*汇率|平均.*汇率","expected_rows_ge":1,"key_check":"AVG汇率"}
+{"id":"T130","category":"statistic","dataset":"finance.csv","question":"最高汇率","expected_sql_pattern":"MAX.*汇率|最大.*汇率","expected_rows_ge":1,"key_check":"MAX汇率"}
+{"id":"T131","category":"threshold_filter","dataset":"finance.csv","question":"营收超过15万的月份","expected_sql_pattern":"营收.*>.*150000|营收.*>","expected_rows_ge":1,"key_check":">15万"}
+{"id":"T132","category":"threshold_filter","dataset":"finance.csv","question":"汇率大于7.2的月份","expected_sql_pattern":"汇率.*>.*7.2|汇率.*>","expected_rows_ge":1,"key_check":">7.2"}
+{"id":"T133","category":"threshold_filter","dataset":"finance.csv","question":"毛利率低于40%的月份","expected_sql_pattern":"毛利率.*<.*40|毛利率.*<","expected_rows":0,"key_check":"<40%"}
+{"id":"T134","category":"scalar_count","dataset":"finance.csv","question":"一共有多少个月份","expected_sql_pattern":"COUNT","expected_rows":1,"key_check":"24月"}
+{"id":"T135","category":"ranking","dataset":"finance.csv","question":"营收最高的5个月","expected_sql_pattern":"ORDER BY.*营收.*DESC.*LIMIT.*5","expected_rows":5,"key_check":"TOP5营收"}
+{"id":"T136","category":"ranking","dataset":"finance.csv","question":"成本最低的3个月","expected_sql_pattern":"ORDER BY.*成本.*ASC.*LIMIT.*3|ORDER BY.*成本.*LIMIT.*3","expected_rows":3,"key_check":"成本最低"}
+{"id":"T137","category":"time_after","dataset":"finance.csv","question":"2025年的月份记录","expected_sql_pattern":"日期.*>=.*2025|日期.*2025","expected_rows_ge":10,"key_check":"2025"}
+{"id":"T138","category":"time_before","dataset":"finance.csv","question":"2024年的月份记录","expected_sql_pattern":"日期.*<.*2025|日期.*2024","expected_rows_ge":10,"key_check":"2024"}
+{"id":"T139","category":"time_range","dataset":"finance.csv","question":"2025年上半年的月份","expected_sql_pattern":"日期.*>=.*2025-01|日期.*<=","expected_rows_ge":6,"key_check":"2025H1"}
+{"id":"T140","category":"time_range","dataset":"finance.csv","question":"2024年10月到12月的月份","expected_sql_pattern":"日期.*>=.*2024-10|日期.*<=","expected_rows":3,"key_check":"2024Q4"}
+{"id":"T141","category":"aggregation_group","dataset":"finance.csv","question":"按币种统计营收","expected_sql_pattern":"GROUP BY.*币种","expected_rows":2,"key_check":"币种分组"}
+{"id":"T142","category":"having","dataset":"finance.csv","question":"营收超过10万的月份","expected_sql_pattern":"营收.*>|HAVING","expected_rows_ge":12,"key_check":">10万"}
+{"id":"T143","category":"ratio","dataset":"finance.csv","question":"成本占营收比例","expected_sql_pattern":"占比|百分比|成本.*营收","expected_rows_ge":1,"key_check":"成本占比"}
+{"id":"T144","category":"multi_condition","dataset":"finance.csv","question":"2025年营收超过20万的月份","expected_sql_pattern":"日期.*2025.*营收.*>|营收.*>.*2025","expected_rows_ge":1,"key_check":"2025且>20万"}
+{"id":"T145","category":"cumulative","dataset":"finance.csv","question":"累计营收","expected_sql_pattern":"CUMULATIVE|SUM.*OVER|累计","expected_rows_ge":1,"key_check":"累计营收"}
+{"id":"T146","category":"count_distinct","dataset":"finance.csv","question":"有多少个币种","expected_sql_pattern":"DISTINCT.*币种|COUNT.*币种","expected_rows":1,"key_check":"2币种"}
+{"id":"T147","category":"comparison","dataset":"finance.csv","question":"营收最高月份","expected_sql_pattern":"MAX.*营收|最大","expected_rows_ge":1,"key_check":"单月最高"}
+{"id":"T148","category":"threshold_filter","dataset":"finance.csv","question":"毛利率大于40的","expected_sql_pattern":"毛利率.*>.*40|毛利率.*>","expected_rows_ge":1,"key_check":">40%"}
+{"id":"T149","category":"range_filter","dataset":"finance.csv","question":"2024年6月到12月的月份数据","expected_sql_pattern":"日期.*>=|日期.*<=","expected_rows_ge":5,"key_check":"6-12月"}

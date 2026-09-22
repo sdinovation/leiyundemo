@@ -1,0 +1,25 @@
+{"id":"T175","category":"single_filter","dataset":"leap_year.csv","question":"2024-02-29这条记录","expected_sql_pattern":"日期.*=.*2024-02-29|2024-02-29","expected_rows":1,"key_check":"闰年当日"}
+{"id":"T176","category":"single_filter","dataset":"leap_year.csv","question":"闰年当日的数据","expected_sql_pattern":"日期.*2024-02-29|闰年","expected_rows":1,"key_check":"2024-02-29"}
+{"id":"T177","category":"single_filter","dataset":"leap_year.csv","question":"季末的销售总额","expected_sql_pattern":"备注.*季末|季末","expected_rows_ge":1,"key_check":"季末标记"}
+{"id":"T178","category":"single_filter","dataset":"leap_year.csv","question":"北京的销售记录","expected_sql_pattern":"城市.*=.*北京|北京","expected_rows_ge":4,"key_check":"北京"}
+{"id":"T179","category":"single_filter","dataset":"leap_year.csv","question":"上海的记录","expected_sql_pattern":"城市.*=.*上海|上海","expected_rows_ge":4,"key_check":"上海"}
+{"id":"T180","category":"single_filter","dataset":"leap_year.csv","question":"深圳的销售","expected_sql_pattern":"城市.*=.*深圳|深圳","expected_rows_ge":3,"key_check":"深圳"}
+{"id":"T181","category":"time_after","dataset":"leap_year.csv","question":"2025年1月到12月的销售总额","expected_sql_pattern":"日期.*>=.*2025-01|日期.*<=","expected_rows_ge":1,"key_check":"2025"}
+{"id":"T182","category":"time_before","dataset":"leap_year.csv","question":"2024年1月到12月的销售总额","expected_sql_pattern":"日期.*<.*2025|日期.*2024","expected_rows_ge":1,"key_check":"2024"}
+{"id":"T183","category":"time_range","dataset":"leap_year.csv","question":"2024年Q1的数据","expected_sql_pattern":"日期.*>=.*2024-01|日期.*<=","expected_rows_ge":3,"key_check":"2024Q1"}
+{"id":"T184","category":"time_range","dataset":"leap_year.csv","question":"2025年Q1的记录","expected_sql_pattern":"日期.*>=.*2025-01|日期.*<=","expected_rows_ge":3,"key_check":"2025Q1"}
+{"id":"T185","category":"aggregation_group","dataset":"leap_year.csv","question":"各城市销售额","expected_sql_pattern":"GROUP BY.*城市","expected_rows":4,"key_check":"4城市"}
+{"id":"T186","category":"aggregation_group","dataset":"leap_year.csv","question":"各年销售额","expected_sql_pattern":"GROUP BY|GROUP BY.*日期","expected_rows_ge":2,"key_check":"按年"}
+{"id":"T187","category":"statistic","dataset":"leap_year.csv","question":"总销售额","expected_sql_pattern":"SUM.*销售额","expected_rows_ge":1,"key_check":"SUM"}
+{"id":"T188","category":"statistic","dataset":"leap_year.csv","question":"平均销售额","expected_sql_pattern":"AVG.*销售额","expected_rows_ge":1,"key_check":"AVG"}
+{"id":"T189","category":"statistic","dataset":"leap_year.csv","question":"最大销售额","expected_sql_pattern":"MAX.*销售额","expected_rows_ge":1,"key_check":"MAX"}
+{"id":"T190","category":"ranking","dataset":"leap_year.csv","question":"销售额最高的5条","expected_sql_pattern":"ORDER BY.*销售额.*DESC.*LIMIT.*5","expected_rows":5,"key_check":"TOP5"}
+{"id":"T191","category":"threshold_filter","dataset":"leap_year.csv","question":"销售额大于2000的记录","expected_sql_pattern":"销售额.*>.*2000|销售额.*>","expected_rows_ge":3,"key_check":">2000"}
+{"id":"T192","category":"threshold_filter","dataset":"leap_year.csv","question":"销售额大于1500的订单明细","expected_sql_pattern":"WHERE.*销售额.*>|销售额.*>.*1500","expected_rows":4,"key_check":">1500"}
+{"id":"T193","category":"range_filter","dataset":"leap_year.csv","question":"2024年2月的销售总额","expected_sql_pattern":"日期.*>=.*2024-02|日期.*<=","expected_rows_ge":1,"key_check":"2024年2月"}
+{"id":"T194","category":"single_filter","dataset":"leap_year.csv","question":"2024-02-28这条记录","expected_sql_pattern":"日期.*=.*2024-02-28|2024-02-28","expected_rows_ge":1,"key_check":"2月28日"}
+{"id":"T195","category":"cumulative","dataset":"leap_year.csv","question":"累计销售额","expected_sql_pattern":"CUMULATIVE|SUM.*OVER|累计","expected_rows_ge":1,"key_check":"累计"}
+{"id":"T196","category":"ratio","dataset":"leap_year.csv","question":"各城市销售额占比","expected_sql_pattern":"占比|百分比|GROUP BY.*城市","expected_rows":4,"key_check":"城市占比"}
+{"id":"T197","category":"having","dataset":"leap_year.csv","question":"每个城市销售额总和超过5000","expected_sql_pattern":"HAVING.*销售额|SUM.*销售额.*>|城市.*SUM","expected_rows_ge":1,"key_check":">5000"}
+{"id":"T198","category":"count_distinct","dataset":"leap_year.csv","question":"有多少个城市","expected_sql_pattern":"DISTINCT.*城市|COUNT.*城市","expected_rows":4,"key_check":"4城市"}
+{"id":"T199","category":"comparison","dataset":"leap_year.csv","question":"北京和上海对比","expected_sql_pattern":"城市.*(北京|上海)|北京.*上海","expected_rows_ge":2,"key_check":"对比"}

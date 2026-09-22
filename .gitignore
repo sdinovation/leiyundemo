@@ -1,0 +1,59 @@
+# Vendor JS（通过 CDN 引入）
+echarts.min.js
+lucide.min.js
+tailwindcss.js
+xlsx.min.js
+papaparse.min.js
+mermaid.min.js
+# Vendor JS 容器（嵌套在文档目录里）
+**/_shared/js/
+
+# 顶层示例数据 CSV（不属于测试 fixtures）
+/50道趋势与百分比问题.csv
+/趋势与百分比问题.csv
+/趋势与百分比50题.csv
+/趋势类问题_答案_分析结果.csv
+/数分问题与答案.csv
+/数分问题与答案_多领域.csv
+/数分问题与答案.txt
+/学生成绩表.csv
+/员工信息表.csv
+/客户订单表.csv
+/物流配送表.csv
+/电商网站流量数据表.csv
+/社交媒体用户互动表.csv
+/银行贷款数据表.csv
+/销售数据表.csv
+/餐饮门店营业表.csv
+
+# 产品/招聘文档
+/产品实习生日常总结模板.docx
+/产品实习生日常总结模板.html
+/产品经理实习面试问答准备.html
+/产品经理面试题答案手册.html
+/直签业绩模块工作总结.docx
+/直签业绩模块工作总结.html
+
+# 其他
+/qrcode_config.png
+/.trae-html-share-packages/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.env
+
+# Node
+node_modules/
+.npm/
+
+# IDE / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo

@@ -1,0 +1,47 @@
+{"id":"T82","category":"aggregation_group","dataset":"ecommerce_10k.csv","question":"各品类销售额","expected_sql_pattern":"GROUP BY.*品类|SUM.*销售额","expected_rows":5,"key_check":"5品类分组"}
+{"id":"T83","category":"aggregation_group","dataset":"ecommerce_10k.csv","question":"各渠道销售额","expected_sql_pattern":"GROUP BY.*渠道","expected_rows":4,"key_check":"4渠道分组"}
+{"id":"T84","category":"aggregation_group","dataset":"ecommerce_10k.csv","question":"各状态订单数","expected_sql_pattern":"GROUP BY.*状态|COUNT","expected_rows":4,"key_check":"4状态"}
+{"id":"T85","category":"ranking","dataset":"ecommerce_10k.csv","question":"销售额最高的10个订单","expected_sql_pattern":"ORDER BY.*销售额.*DESC.*LIMIT.*10","expected_rows":10,"key_check":"TOP10销售额"}
+{"id":"T86","category":"ranking","dataset":"ecommerce_10k.csv","question":"数量最大的5个订单","expected_sql_pattern":"ORDER BY.*数量.*DESC.*LIMIT.*5","expected_rows":5,"key_check":"TOP5数量"}
+{"id":"T87","category":"ranking","dataset":"ecommerce_10k.csv","question":"各品类销售额排名","expected_sql_pattern":"ORDER BY.*DESC.*LIMIT|GROUP BY.*品类.*ORDER","expected_rows":5,"key_check":"品类排名"}
+{"id":"T88","category":"scalar_count","dataset":"ecommerce_10k.csv","question":"订单总数","expected_sql_pattern":"COUNT|SUM","expected_rows_ge":1,"key_check":"总订单"}
+{"id":"T89","category":"scalar_count","dataset":"ecommerce_10k.csv","question":"有多少个客户","expected_sql_pattern":"DISTINCT.*客户|COUNT.*客户","expected_rows_ge":1,"key_check":"500客户"}
+{"id":"T90","category":"count_distinct","dataset":"ecommerce_10k.csv","question":"有多少个品类","expected_sql_pattern":"DISTINCT.*品类|COUNT.*品类","expected_rows":1,"key_check":"5品类"}
+{"id":"T91","category":"count_distinct","dataset":"ecommerce_10k.csv","question":"渠道种类数","expected_sql_pattern":"DISTINCT.*渠道|COUNT.*渠道","expected_rows":4,"key_check":"4渠道"}
+{"id":"T92","category":"statistic","dataset":"ecommerce_10k.csv","question":"总销售额","expected_sql_pattern":"SUM.*销售额","expected_rows_ge":1,"key_check":"SUM销售额"}
+{"id":"T93","category":"statistic","dataset":"ecommerce_10k.csv","question":"平均订单金额","expected_sql_pattern":"AVG.*销售额|平均","expected_rows_ge":1,"key_check":"AVG销售额"}
+{"id":"T94","category":"statistic","dataset":"ecommerce_10k.csv","question":"销售额最大值","expected_sql_pattern":"MAX.*销售额","expected_rows_ge":1,"key_check":"MAX"}
+{"id":"T95","category":"statistic","dataset":"ecommerce_10k.csv","question":"销售额最小值","expected_sql_pattern":"MIN.*销售额","expected_rows_ge":1,"key_check":"MIN"}
+{"id":"T96","category":"single_filter","dataset":"ecommerce_10k.csv","question":"天猫的订单","expected_sql_pattern":"渠道.*=.*天猫","expected_rows_ge":1,"key_check":"天猫过滤"}
+{"id":"T97","category":"single_filter","dataset":"ecommerce_10k.csv","question":"已完成的订单","expected_sql_pattern":"状态.*=.*已完成","expected_rows_ge":1,"key_check":"已完成"}
+{"id":"T98","category":"single_filter","dataset":"ecommerce_10k.csv","question":"电子产品类的销售总额","expected_sql_pattern":"品类.*电子产品|电子产品","expected_rows_ge":1,"key_check":"电子产品"}
+{"id":"T99","category":"threshold_filter","dataset":"ecommerce_10k.csv","question":"销售额大于2000的订单","expected_sql_pattern":"销售额.*>.*2000","expected_rows_ge":1,"key_check":">2000"}
+{"id":"T100","category":"threshold_filter","dataset":"ecommerce_10k.csv","question":"数量大于3的","expected_sql_pattern":"数量.*>.*3|数量.*>","expected_rows_ge":1,"key_check":">3数量"}
+{"id":"T101","category":"threshold_filter","dataset":"ecommerce_10k.csv","question":"有折扣的订单","expected_sql_pattern":"折扣率.*>|折扣率","expected_rows_ge":1,"key_check":"折扣>0"}
+{"id":"T102","category":"range_filter","dataset":"ecommerce_10k.csv","question":"2025年1月10日到1月20日的订单","expected_sql_pattern":"日期.*>=|日期.*<=","expected_rows_ge":1,"key_check":"1月10-20日"}
+{"id":"T103","category":"time_after","dataset":"ecommerce_10k.csv","question":"2025年1月15日之后的订单","expected_sql_pattern":"日期.*>=.*2025-01-15|日期.*>=","expected_rows_ge":1,"key_check":"1/15之后"}
+{"id":"T104","category":"time_before","dataset":"ecommerce_10k.csv","question":"2025年1月之前的销售","expected_sql_pattern":"日期.*<.*2025-02|日期.*<.*2025","expected_rows_ge":1,"key_check":"1月之前"}
+{"id":"T105","category":"multi_condition","dataset":"ecommerce_10k.csv","question":"天猫且已完成的订单","expected_sql_pattern":"渠道.*天猫.*状态.*已完成|状态.*完成.*渠道.*天猫","expected_rows_ge":1,"key_check":"AND"}
+{"id":"T106","category":"multi_condition","dataset":"ecommerce_10k.csv","question":"服装类销售额大于1000","expected_sql_pattern":"品类.*服装.*销售额.*>|服装.*销售额.*>","expected_rows_ge":1,"key_check":"服装>1000"}
+{"id":"T107","category":"trend_group","dataset":"ecommerce_10k.csv","question":"每日销售额趋势","expected_sql_pattern":"SUM.*销售额|GROUP BY.*日期","expected_rows_ge":10,"key_check":"按日SUM"}
+{"id":"T108","category":"having","dataset":"ecommerce_10k.csv","question":"各品类销售额超过500万的","expected_sql_pattern":"HAVING.*销售额|销售额.*>.*500","expected_rows_ge":1,"key_check":"品类SUM>500W"}
+{"id":"T109","category":"ratio","dataset":"ecommerce_10k.csv","question":"各品类销售额占比","expected_sql_pattern":"占比|百分比|SUM.*销售额","expected_rows":5,"key_check":"品类占比"}
+{"id":"T110","category":"ratio","dataset":"ecommerce_10k.csv","question":"各渠道占比","expected_sql_pattern":"占比|百分比|GROUP BY.*渠道","expected_rows":4,"key_check":"渠道占比"}
+{"id":"T111","category":"cumulative","dataset":"ecommerce_10k.csv","question":"累计销售额","expected_sql_pattern":"CUMULATIVE|SUM.*OVER|累计","expected_rows_ge":1,"key_check":"累计"}
+{"id":"T112","category":"like_filter","dataset":"ecommerce_10k.csv","question":"商品名含'手机'的产品","expected_sql_pattern":"商品名.*LIKE|手机","expected_rows_ge":1,"key_check":"手机LIKE"}
+{"id":"T113","category":"scalar_avg","dataset":"ecommerce_10k.csv","question":"平均折扣率","expected_sql_pattern":"AVG.*折扣率|平均.*折扣","expected_rows_ge":1,"key_check":"AVG折扣"}
+{"id":"T114","category":"ranking_date","dataset":"ecommerce_10k.csv","question":"销售额最高的5个订单","expected_sql_pattern":"ORDER BY.*销售额.*DESC.*LIMIT.*5","expected_rows":5,"key_check":"TOP5"}
+{"id":"T115","category":"comparison","dataset":"ecommerce_10k.csv","question":"天猫和京东对比","expected_sql_pattern":"渠道.*(天猫|京东)|天猫.*京东","expected_rows_ge":2,"key_check":"天京对比"}
+{"id":"T116","category":"time_range","dataset":"ecommerce_10k.csv","question":"2025年Q1的订单","expected_sql_pattern":"日期.*>=.*2025-01|日期.*<=","expected_rows_ge":1,"key_check":"Q1"}
+{"id":"T117","category":"trend_group","dataset":"ecommerce_10k.csv","question":"各品类订单数","expected_sql_pattern":"GROUP BY.*品类|COUNT","expected_rows":5,"key_check":"品类COUNT"}
+{"id":"T118","category":"single_filter","dataset":"ecommerce_10k.csv","question":"拼多多的订单","expected_sql_pattern":"渠道.*=.*拼多多|拼多多","expected_rows_ge":1,"key_check":"拼多多"}
+{"id":"T119","category":"threshold_filter","dataset":"ecommerce_10k.csv","question":"折扣率大于0.1的订单","expected_sql_pattern":"折扣率.*>.*0.1|折扣率.*>","expected_rows_ge":1,"key_check":">0.1折扣"}
+{"id":"T202","category":"multi_metric_scalar","dataset":"sales.csv","question":"计算总销售额和总销售数量","expected_sql_pattern":"SUM.*销售额.*SUM.*数量|SUM.*数量.*SUM.*销售额","expected_rows":1,"key_check":"双指标SUM"}
+{"id":"T_产品","category":"multi_metric_dim","dataset":"sales.csv","question":"按产品类别统计总销售额和总数量","expected_sql_pattern":"SELECT.*产品.*SUM.*销售额.*SUM.*数量.*GROUP BY","expected_rows":3,"key_check":"双指标多维度"}
+{"id":"T_区域","category":"group_extreme","dataset":"sales.csv","question":"按销售区域统计总销售额，找出最高区域","expected_sql_pattern":"GROUP BY.*城市|SUM.*城市","expected_rows_ge":3,"key_check":"最高区域标注"}
+{"id":"T_日期","category":"date_extreme","dataset":"sales.csv","question":"按日期统计每日销售额，找出最高和最低日期","expected_sql_pattern":"GROUP BY.*日期|SUM.*日期","expected_rows_ge":5,"key_check":"最高最低日期"}
+{"id":"T_F4_a","category":"compound_extreme_ratio","dataset":"sales.csv","question":"销售额最高类别占总销售额的百分比","expected_sql_pattern":"SELECT.*城市.*SUM.*销售额.*ROUND.*GROUP BY.*城市","expected_rows":1,"key_check":"最高占比"}
+{"id":"T_F4_b","category":"compound_extreme_ratio","dataset":"sales.csv","question":"哪个产品类别销售额占总销售额比例最高","expected_sql_pattern":"SELECT.*产品.*SUM.*销售额.*ROUND.*GROUP BY.*产品","expected_rows":1,"key_check":"占比最高"}
+{"id":"T_DailyAvg","category":"daily_avg","dataset":"ecommerce_10k.csv","question":"日均交易笔数是多少","expected_sql_pattern":"CAST\(COUNT\(\*\) AS REAL\).*COUNT\(DISTINCT.*日期.*|COUNT\(DISTINCT.*日期.*CAST\(COUNT\(\*\) AS REAL\)","expected_rows":1,"key_check":"日均COUNT/DISTINCT日期"}
+{"id":"T_DistProd","category":"count_distinct","dataset":"ecommerce_10k.csv","question":"共有多少种不同的产品","expected_sql_pattern":"COUNT\(DISTINCT.*商品名.*\)","expected_rows":1,"key_check":"产品→商品名映射"}
+{"id":"T_DistCate","category":"count_distinct","dataset":"ecommerce_10k.csv","question":"共有多少种不同的品类","expected_sql_pattern":"COUNT\(DISTINCT.*品类.*\)","expected_rows":1,"key_check":"品类去重"}

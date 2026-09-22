@@ -1,0 +1,25 @@
+{"id":"T150","category":"like_filter","dataset":"dirty_data.csv","question":"姓名含张的员工","expected_sql_pattern":"姓名.*LIKE|张","expected_rows_ge":1,"key_check":"LIKE 张"}
+{"id":"T151","category":"single_filter","dataset":"dirty_data.csv","question":"研发部的员工","expected_sql_pattern":"部门.*=.*研发|研发","expected_rows_ge":5,"key_check":"研发员工"}
+{"id":"T152","category":"single_filter","dataset":"dirty_data.csv","question":"销售部的员工","expected_sql_pattern":"部门.*=.*销售|销售","expected_rows_ge":4,"key_check":"销售员工"}
+{"id":"T153","category":"single_filter","dataset":"dirty_data.csv","question":"人事部的员工","expected_sql_pattern":"部门.*=.*人事|人事","expected_rows":2,"key_check":"人事=2"}
+{"id":"T154","category":"aggregation_group","dataset":"dirty_data.csv","question":"各部门人数","expected_sql_pattern":"GROUP BY.*部门","expected_rows_ge":3,"key_check":"部门分组"}
+{"id":"T155","category":"statistic","dataset":"dirty_data.csv","question":"薪资总额","expected_sql_pattern":"SUM.*薪资","expected_rows_ge":1,"key_check":"SUM薪资"}
+{"id":"T156","category":"scalar_avg","dataset":"dirty_data.csv","question":"平均薪资","expected_sql_pattern":"AVG.*薪资","expected_rows_ge":1,"key_check":"AVG薪资"}
+{"id":"T157","category":"threshold_filter","dataset":"dirty_data.csv","question":"薪资大于15000的员工","expected_sql_pattern":"薪资.*>.*15000|薪资.*>","expected_rows_ge":3,"key_check":">15000"}
+{"id":"T158","category":"threshold_filter","dataset":"dirty_data.csv","question":"薪资小于13000的","expected_sql_pattern":"薪资.*<.*13000|薪资.*<","expected_rows_ge":3,"key_check":"<13000"}
+{"id":"T159","category":"ranking","dataset":"dirty_data.csv","question":"薪资最高的3个员工","expected_sql_pattern":"ORDER BY.*薪资.*DESC.*LIMIT.*3","expected_rows":3,"key_check":"TOP3"}
+{"id":"T160","category":"ranking","dataset":"dirty_data.csv","question":"薪资最低的3个","expected_sql_pattern":"ORDER BY.*薪资.*ASC.*LIMIT.*3","expected_rows":3,"key_check":"最低3"}
+{"id":"T161","category":"scalar_count","dataset":"dirty_data.csv","question":"一共有多少员工","expected_sql_pattern":"COUNT","expected_rows_ge":1,"key_check":"总行数"}
+{"id":"T162","category":"scalar_count","dataset":"dirty_data.csv","question":"研发部员工人数","expected_sql_pattern":"COUNT|研发","expected_rows_ge":1,"key_check":"研发数"}
+{"id":"T163","category":"count_distinct","dataset":"dirty_data.csv","question":"有多少个部门","expected_sql_pattern":"DISTINCT.*部门|COUNT.*部门","expected_rows_ge":3,"key_check":"部门数"}
+{"id":"T164","category":"count_distinct","dataset":"dirty_data.csv","question":"不重复员工数","expected_sql_pattern":"DISTINCT.*姓名|COUNT","expected_rows_ge":1,"key_check":"去重姓名"}
+{"id":"T165","category":"multi_condition","dataset":"dirty_data.csv","question":"研发部薪资大于15000","expected_sql_pattern":"研发.*薪资.*>|薪资.*>.*研发","expected_rows_ge":1,"key_check":"研发>15000"}
+{"id":"T166","category":"range_filter","dataset":"dirty_data.csv","question":"薪资在13000到18000之间的","expected_sql_pattern":"薪资.*BETWEEN|薪资.*>=.*<=","expected_rows_ge":3,"key_check":"13000-18000"}
+{"id":"T167","category":"statistic","dataset":"dirty_data.csv","question":"薪资的最大值","expected_sql_pattern":"MAX.*薪资","expected_rows_ge":1,"key_check":"MAX"}
+{"id":"T168","category":"statistic","dataset":"dirty_data.csv","question":"薪资的最小值","expected_sql_pattern":"MIN.*薪资","expected_rows_ge":1,"key_check":"MIN"}
+{"id":"T169","category":"like_filter","dataset":"dirty_data.csv","question":"姓名里含'刘'的员工","expected_sql_pattern":"姓名.*LIKE.*刘|LIKE.*刘","expected_rows":2,"key_check":"刘七+刘九"}
+{"id":"T170","category":"like_filter","dataset":"dirty_data.csv","question":"姓名以'王'开头的","expected_sql_pattern":"LIKE.*王%|姓名.*王","expected_rows_ge":1,"key_check":"王五+王十四"}
+{"id":"T171","category":"having","dataset":"dirty_data.csv","question":"各部门平均薪资超过15000","expected_sql_pattern":"AVG.*薪资|HAVING","expected_rows_ge":1,"key_check":"AVG>15000"}
+{"id":"T172","category":"trend_group","dataset":"dirty_data.csv","question":"各入职年份人数","expected_sql_pattern":"GROUP BY.*入职|COUNT","expected_rows_ge":3,"key_check":"按年"}
+{"id":"T173","category":"single_filter","dataset":"dirty_data.csv","question":"2020年入职的员工","expected_sql_pattern":"入职.*2020|2020","expected_rows_ge":2,"key_check":"2020"}
+{"id":"T174","category":"threshold_filter","dataset":"dirty_data.csv","question":"薪资超过18000的","expected_sql_pattern":"薪资.*>.*18000|薪资.*>","expected_rows_ge":2,"key_check":">18000"}
